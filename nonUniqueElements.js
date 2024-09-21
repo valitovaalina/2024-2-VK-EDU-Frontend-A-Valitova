@@ -25,6 +25,16 @@ nonUniqueElements([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
  */
 
 export default function nonUniqueElements(data) {
-  // your solution goes here
-  return data
+  const dict = {};
+
+  data.forEach((el) => {
+    if (dict[el]) {
+      dict[el]++;
+      return;
+    }
+
+    dict[el] = 1;
+  })
+
+  return data.filter((el) => dict[el] >= 2);
 }

@@ -13,5 +13,17 @@
  */
 
 export default function convertBytesToHuman(bytes) {
-  // your solution goes here
+  if (typeof bytes !== 'number' || isNaN(bytes) || bytes < 0) {
+      return false;
+  }
+
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    let index = 0;
+
+    while (bytes >= 1024 && index + 1 < sizes.length) {
+        bytes /= 1024;
+        index++;
+    }
+
+    return (bytes * 10) % 10 !== 0 ? `${bytes.toFixed(2)} ${sizes[index]}` : `${bytes} ${sizes[index]}`;
 }

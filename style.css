@@ -18,3 +18,118 @@ body {
     line-height: 20px;
 }
 
+.form {
+    width: 100%;
+    border: 1px solid rgba(25, 25, 25, 0.32);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    border-top: 2px solid #DDD;
+    background: #FFF;
+    padding-right: 7px;
+    max-height: 100px;
+    align-items: center;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    border-bottom: 2px solid #DDD;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(252, 197, 33);
+}
+
+.header_name {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.header_icons {
+    display: flex;
+    gap: 10px;
+}
+
+.messages-scroll {
+    max-height: 630px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-top: 10px;
+}
+
+.messages::-webkit-scrollbar {
+    height: 100px;
+    width: 7px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background-color: #A6A3A3;
+    border-radius: 20px;
+    border: 3px solid transparent;
+}
+
+.message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0.3125rem 0.5rem 0.375rem;
+    background-color: #428BF9;
+    border-radius: 15px 15px 0 15px;
+    max-width: 500px;
+    margin-right: 10px;
+}
+
+.message-text {
+    color: #FFF;
+    word-break: break-word;
+    margin: 0;
+}
+
+.message-date {
+    color: #FFF;
+    font-size: 12px;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 10px;
+}
+
+input[type=submit] {
+    visibility: collapse;
+}
+
+.form_input {
+    outline: 0;
+    width: 100%;
+    padding: 10px 13px 10px 23px;
+    border: 0;
+}
+
+.form_send-button {
+    background: none;
+    border: none;
+}
+
+.form_send-button:hover {
+    opacity: 50%;
+}
+

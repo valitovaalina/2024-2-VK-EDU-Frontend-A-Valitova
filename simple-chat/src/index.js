@@ -71,8 +71,8 @@ const handleKeyPress = (event) => {
     }
 };
 
-loadMessagesFromLocalStorage();
-
 form.addEventListener('submit', (e) => handleSubmit(e));
 form.addEventListener('keypress', (e) => handleKeyPress(e));
 sendButton.addEventListener('click', (e) => handleSubmit(e));
+
+loadMessagesFromLocalStorage();

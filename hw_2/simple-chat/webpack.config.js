@@ -4,9 +4,11 @@ const path = require('path');
 
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+
 const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, 'src');
+
 const BUILD_PATH = path.resolve(__dirname, 'build');
 
 module.exports = {
@@ -43,14 +45,17 @@ module.exports = {
                 ],
             },
             {
-                test: /index\.css$/,
-                include: SRC_PATH,
+                test: /\.s[ac]ss$/i,
                 use: [
+                    "style-loader",
+                    "css-loader",
                     {
-                        loader: MiniCSSExtractPlugin.loader,
-                    },
-                    {
-                        loader: 'css-loader',
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                includePaths: ['./src/styles']
+                            }
+                        }
                     },
                 ],
             },
@@ -63,6 +68,6 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './index.html'
-        })
+        }),
     ]
 };

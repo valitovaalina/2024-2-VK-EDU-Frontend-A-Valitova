@@ -42,7 +42,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
     background-color: rgb(252, 197, 33);
 }
 
@@ -132,3 +132,4 @@ input[type=submit] {
 .form_send-button:hover {
     opacity: 50%;
 }
+

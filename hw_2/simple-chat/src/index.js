@@ -1,39 +1,40 @@
 import {createChatPage} from './pages/chat-page';
+import {createChatsPage} from './pages/chats-page';
+import {chatsMocks} from './mocks/mocks';
 import './styles/index.scss';
 
 const root = document.getElementById('root');
-const App = document.createElement('div');
-App.id = 'App';
+const app = document.createElement('div');
+let state = 'chats-page';
+let chatId = 1;
+let chatName = '';
 
-let state = 'chat-page';
-let userId = 31;
-let chatId = null;
+localStorage.setItem('chats', JSON.stringify(chatsMocks));
 
 const updateApp = () => {
-    App.innerHTML = '';
+    app.innerHTML = '';
 
     switch (state) {
-        case "chat-page":
-            App.appendChild(createChatPage({userId: userId}))
+        case 'chats-page':
+            app.appendChild(createChatsPage(chatId))
+            break;
+        case 'chat-page':
+            app.appendChild(createChatPage(chatName, chatId))
             break;
     }
 
-    root.appendChild(App);
+    root.appendChild(app);
 }
 
-window.updateState = (newState, params = {}) => {
-    state = newState;
+window.updateState = (updatedState, params = {}) => {
+    state = updatedState;
 
-    if (newState === 'chat') {
+    if (updatedState === 'chat-page') {
         chatId = params.chatId;
+        chatName = params.chatName;
     }
+
     updateApp();
 }
-
-window.addEventListener('storage', (event) => {
-    if (event.key === 'chats') {
-        const updatedChats = JSON.parse(event.newValue);
-    }
-});
 
 updateApp();

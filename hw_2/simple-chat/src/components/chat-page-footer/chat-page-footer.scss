@@ -2,7 +2,7 @@ input[type=submit] {
   visibility: collapse;
 }
 
-.form {
+.chat-page-form {
   width: 100%;
   border: 1px solid rgba(25, 25, 25, 0.32);
   position: fixed;
@@ -16,18 +16,18 @@ input[type=submit] {
   align-items: center;
 }
 
-.form_input {
+.chat-page-form_input {
   outline: 0;
   width: 100%;
   padding: 10px 13px 10px 23px;
   border: 0;
 }
 
-.form_send-button {
+.chat-page-form_send-button {
   background: none;
   border: none;
 }
 
-.form_send-button:hover {
+.chat-page-form_send-button:hover {
   opacity: 50%;
 }

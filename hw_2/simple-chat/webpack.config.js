@@ -4,11 +4,11 @@ const path = require('path');
 
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, 'src');
-
 const BUILD_PATH = path.resolve(__dirname, 'build');
 
 module.exports = {
@@ -45,6 +45,19 @@ module.exports = {
                 ],
             },
             {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                include: SRC_PATH,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'assets/[path][name].[ext]',
+                            outputPath: 'assets/',
+                        },
+                    },
+                ],
+            },
+            {
                 test: /\.s[ac]ss$/i,
                 use: [
                     "style-loader",
@@ -68,6 +81,11 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './index.html'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {from: path.join(SRC_PATH, 'images'), to: 'images'},
+            ],
         }),
     ]
 };

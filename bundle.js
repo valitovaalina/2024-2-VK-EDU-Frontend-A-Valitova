@@ -152,6 +152,17 @@ eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../.
 
 /***/ }),
 
+/***/ "../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js?!./components/new-chat-button/new-chat-button.scss":
+/*!**************************************************************************************************************************************************!*\
+  !*** ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js??ref--7-2!./components/new-chat-button/new-chat-button.scss ***!
+  \**************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"../node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \".new-chat-button {\\n  background-color: rgb(252, 197, 33);\\n  width: 50px;\\n  height: 50px;\\n  border-radius: 50px;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  position: fixed;\\n  bottom: 20px;\\n  right: 20px;\\n}\\n.new-chat-button:hover {\\n  cursor: pointer;\\n  background-color: rgb(229, 173, 16);\\n}\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./components/new-chat-button/new-chat-button.scss?../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js??ref--7-2");
+
+/***/ }),
+
 /***/ "../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js?!./styles/index.scss":
 /*!********************************************************************************************************************!*\
   !*** ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js??ref--7-2!./styles/index.scss ***!
@@ -325,6 +336,29 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 
 /***/ }),
 
+/***/ "./components/new-chat-button/new-chat-button.js":
+/*!*******************************************************!*\
+  !*** ./components/new-chat-button/new-chat-button.js ***!
+  \*******************************************************/
+/*! exports provided: createNewChatButton */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createNewChatButton\", function() { return createNewChatButton; });\n/* harmony import */ var _helpers_createElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/createElement */ \"./helpers/createElement.js\");\n/* harmony import */ var _new_chat_button_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new-chat-button.scss */ \"./components/new-chat-button/new-chat-button.scss\");\n/* harmony import */ var _new_chat_button_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_new_chat_button_scss__WEBPACK_IMPORTED_MODULE_1__);\n\n\nvar createNewChatButton = function createNewChatButton() {\n  var newChatButton = Object(_helpers_createElement__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])('div', 'new-chat-button');\n  var newChatButtonIcon = Object(_helpers_createElement__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])('span', 'material-symbols-outlined', 'edit');\n  newChatButton.append(newChatButtonIcon);\n  return newChatButton;\n};\n\n//# sourceURL=webpack:///./components/new-chat-button/new-chat-button.js?");
+
+/***/ }),
+
+/***/ "./components/new-chat-button/new-chat-button.scss":
+/*!*********************************************************!*\
+  !*** ./components/new-chat-button/new-chat-button.scss ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js??ref--7-2!./new-chat-button.scss */ \"../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js?!./components/new-chat-button/new-chat-button.scss\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.i, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack:///./components/new-chat-button/new-chat-button.scss?");
+
+/***/ }),
+
 /***/ "./helpers/createElement.js":
 /*!**********************************!*\
   !*** ./helpers/createElement.js ***!
@@ -381,7 +415,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createChatsPage\", function() { return createChatsPage; });\n/* harmony import */ var _components_chats_page_header_chats_page_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/chats-page-header/chats-page-header */ \"./components/chats-page-header/chats-page-header.js\");\n/* harmony import */ var _components_chats_page_item_chats_page_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/chats-page-item/chats-page-item */ \"./components/chats-page-item/chats-page-item.js\");\n/* harmony import */ var _components_chats_page_items_list_chats_page_items_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/chats-page-items-list/chats-page-items-list */ \"./components/chats-page-items-list/chats-page-items-list.js\");\n/* harmony import */ var _helpers_createElement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/createElement */ \"./helpers/createElement.js\");\n/* harmony import */ var _mocks_mocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mocks/mocks */ \"./mocks/mocks.js\");\n\n\n\n\n\nvar createChatsPage = function createChatsPage(_ref) {\n  var userId = _ref.userId;\n  var container = Object(_helpers_createElement__WEBPACK_IMPORTED_MODULE_3__[\"createElement\"])('div', 'chats-page-container');\n  var header = Object(_components_chats_page_header_chats_page_header__WEBPACK_IMPORTED_MODULE_0__[\"createChatsPageHeader\"])();\n  var chats = Object(_components_chats_page_items_list_chats_page_items_list__WEBPACK_IMPORTED_MODULE_2__[\"createChatsPageItemsList\"])();\n  container.append(header, chats);\n  return container;\n};\n\n//# sourceURL=webpack:///./pages/chats-page.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createChatsPage\", function() { return createChatsPage; });\n/* harmony import */ var _components_chats_page_header_chats_page_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/chats-page-header/chats-page-header */ \"./components/chats-page-header/chats-page-header.js\");\n/* harmony import */ var _components_chats_page_item_chats_page_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/chats-page-item/chats-page-item */ \"./components/chats-page-item/chats-page-item.js\");\n/* harmony import */ var _components_chats_page_items_list_chats_page_items_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/chats-page-items-list/chats-page-items-list */ \"./components/chats-page-items-list/chats-page-items-list.js\");\n/* harmony import */ var _components_new_chat_button_new_chat_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/new-chat-button/new-chat-button */ \"./components/new-chat-button/new-chat-button.js\");\n/* harmony import */ var _helpers_createElement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/createElement */ \"./helpers/createElement.js\");\n/* harmony import */ var _mocks_mocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mocks/mocks */ \"./mocks/mocks.js\");\n\n\n\n\n\n\nvar createChatsPage = function createChatsPage(_ref) {\n  var userId = _ref.userId;\n  var container = Object(_helpers_createElement__WEBPACK_IMPORTED_MODULE_4__[\"createElement\"])('div', 'chats-page-container');\n  var header = Object(_components_chats_page_header_chats_page_header__WEBPACK_IMPORTED_MODULE_0__[\"createChatsPageHeader\"])();\n  var chats = Object(_components_chats_page_items_list_chats_page_items_list__WEBPACK_IMPORTED_MODULE_2__[\"createChatsPageItemsList\"])();\n  var newChatButton = Object(_components_new_chat_button_new_chat_button__WEBPACK_IMPORTED_MODULE_3__[\"createNewChatButton\"])();\n  container.append(header, chats, newChatButton);\n  return container;\n};\n\n//# sourceURL=webpack:///./pages/chats-page.js?");
 
 /***/ }),
 

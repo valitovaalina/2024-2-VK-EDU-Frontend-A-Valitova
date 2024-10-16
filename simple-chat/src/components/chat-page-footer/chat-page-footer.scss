@@ -1,0 +1,33 @@
+input[type=submit] {
+  visibility: collapse;
+}
+
+.chat-page-form {
+  width: 100%;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  border-top: 2px solid #DDD;
+  background: #FFF;
+  padding-right: 7px;
+  min-height: 60px;
+  max-height: 100px;
+  align-items: center;
+}
+
+.chat-page-form_input {
+  outline: 0;
+  width: 100%;
+  padding: 10px 13px 10px 23px;
+  border: 0;
+}
+
+.chat-page-form_send-button {
+  background: none;
+  border: none;
+}
+
+.chat-page-form_send-button:hover {
+  opacity: 50%;
+}

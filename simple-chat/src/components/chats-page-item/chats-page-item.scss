@@ -1,0 +1,53 @@
+.chat {
+  border-radius: 10px;
+  background: #F6F7F8;
+  margin-top: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  transition: transform .2s ease;
+}
+
+.chat:hover {
+  background: #E8E9EA;
+  cursor: pointer;
+}
+
+.chat:active {
+  transform: scale(1.02);
+}
+
+.chat_avatar {
+  width: 56px;
+  height: 56px;
+  margin-right: 20px;
+  border-radius: 56px;
+}
+
+.chat_content-box {
+  display: flex;
+}
+
+.chat_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chat_name {
+  margin: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.chat_last-message, .chat_date {
+  margin: 0;
+  color: #898787;
+}
+
+.chat_indicators {
+  align-items: end;
+}

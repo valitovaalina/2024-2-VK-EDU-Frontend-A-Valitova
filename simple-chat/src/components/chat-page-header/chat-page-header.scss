@@ -17,6 +17,10 @@
 
 .material-symbols-outlined {
   cursor: pointer;
+
+  &:hover {
+    opacity: 50%;
+  }
 }
 
 .chat-page-header_icons {

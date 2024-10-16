@@ -1,6 +1,7 @@
 import {createChatPage} from './pages/chat-page';
 import {createChatsPage} from './pages/chats-page';
 import {chatsMocks} from './mocks/mocks';
+import {getChatsFromLocalStorage} from '../src/pages/chat-page';
 import './styles/index.scss';
 
 const root = document.getElementById('root');
@@ -9,7 +10,8 @@ let state = 'chats-page';
 let chatId = 1;
 let chatName = '';
 
-localStorage.setItem('chats', JSON.stringify(chatsMocks));
+const chats = getChatsFromLocalStorage();
+if (!chats) localStorage.setItem('chats', JSON.stringify(chatsMocks));
 
 const updateApp = () => {
     app.innerHTML = '';

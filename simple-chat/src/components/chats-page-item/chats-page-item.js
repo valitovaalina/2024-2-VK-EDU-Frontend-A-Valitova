@@ -9,7 +9,7 @@ export const createChatsPageItem = (chat) => {
     const avatar = createElement('img', 'chat_avatar');
     const name = createElement('h2', 'chat_name', chat.name);
     const lastMessage = createElement('p', 'chat_last-message', chat.messages.at(-1).text);
-    const date = createElement('span', 'chat_date', chat.messages.at(-1).date.toLocaleTimeString());
+    const date = createElement('span', 'chat_date', new Date(chat.messages.at(-1).date).toLocaleTimeString());
     const readabilityIndicator = createElement('span', 'material-symbols-outlined', 'done_all');
     const notReadabilityIndicator = createElement('span', 'material-symbols-outlined', 'check');
     const checkedElement = chat.isReadability ? readabilityIndicator : notReadabilityIndicator;

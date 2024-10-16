@@ -9,8 +9,8 @@ export const createChatPageHeader = (chatName) => {
     const settingsIcon = createElement('span', 'material-symbols-outlined', 'settings');
     const returnedIcon = createElement('span', 'material-symbols-outlined', 'arrow_back');
 
-    headerIcons.append(searchIcon, settingsIcon, returnedIcon);
-    header.append(headerTitle, headerIcons);
+    headerIcons.append(searchIcon, settingsIcon);
+    header.append(returnedIcon, headerTitle, headerIcons);
 
     returnedIcon.addEventListener('click', () => {
         window.updateState('chats-page');

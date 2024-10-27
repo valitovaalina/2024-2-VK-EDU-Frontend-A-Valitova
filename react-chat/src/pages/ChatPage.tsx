@@ -1,4 +1,4 @@
-import {useEffect, useState, type FC, type FormEvent, type ChangeEvent} from 'react';
+import {useEffect, useState, type FC, type FormEvent, type ChangeEvent, useRef} from 'react';
 import {ChatPageFooter} from '../components/ChatPageFooter/ChatPageFooter';
 import {ChatPageHeader} from '../components/ChatPageHeader/ChatPageHeader';
 import {ChatPageMessages} from '../components/ChatPageMessages/ChatPageMessages';
@@ -16,6 +16,7 @@ export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
 
     const [messages, setMessages] = useState<Message[]>(chat.messages);
     const [inputValue, setInputValue] = useState<string>('');
+    const messagesRef = useRef<any>();
 
     useEffect(() => {
         const messagesFromLocalStorage = loadMessagesFromLocalStorage(chat.id);
@@ -34,6 +35,10 @@ export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
             saveMessageToLocalStorage(message, chat.id);
             setMessages(newMessages);
             setInputValue('');
+
+            if (messagesRef.current) {
+                messagesRef.current.scrollTop = messagesRef.current.scrollHeight - messagesRef.current.clientHeight;
+            }
         }
     };
 
@@ -44,7 +49,7 @@ export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
     return (
         <div>
             <ChatPageHeader chatName={chat.name} setId={setId} />
-            <ChatPageMessages messages={messages} />
+            <ChatPageMessages messages={messages} messagesRef={messagesRef} />
             <ChatPageFooter handleSubmit={handleSubmit} inputValue={inputValue} onChangeInput={onChangeInput} />
         </div>
     );

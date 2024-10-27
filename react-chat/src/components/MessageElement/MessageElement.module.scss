@@ -21,7 +21,7 @@
   }
 }
 
-.message-content {
+.messageContent {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -32,13 +32,13 @@
   margin-right: 10px;
 }
 
-.message-text {
+.messageText {
   color: #FFF;
   word-break: break-word;
   margin: 0;
 }
 
-.message-date {
+.messageDate {
   color: #FFF;
   font-size: 12px;
   display: flex;

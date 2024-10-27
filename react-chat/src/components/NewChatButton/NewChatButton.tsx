@@ -1,10 +1,10 @@
 import {type FC} from 'react';
 import EditIcon from '@mui/icons-material/Edit';
-import './NewChatButton.scss';
+import styles from './NewChatButton.module.scss';
 
 export const NewChatButton: FC = () => {
     return (
-        <div className="new-chat-button">
+        <div className={styles.newChatButton}>
             <EditIcon className="material-symbols-outlined" />
         </div>
     );

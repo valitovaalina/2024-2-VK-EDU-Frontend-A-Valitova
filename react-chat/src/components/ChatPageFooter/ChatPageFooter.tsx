@@ -1,6 +1,6 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import type {ChangeEvent, FC, FormEvent} from 'react';
-import './ChatPageFooter.scss';
+import styles from './ChatPageFooter.module.scss';
 
 interface IChatPageFooter {
     input: string;
@@ -11,7 +11,7 @@ interface IChatPageFooter {
 export const ChatPageFooter: FC<IChatPageFooter> = ({input, onChangeInput, handleSubmit}) => {
     return (
         <footer>
-            <form id="form" className="chat-page-form" onSubmit={handleSubmit}>
+            <form id="form" className={styles.chatPageForm} onSubmit={handleSubmit}>
                 <input
                     value={input}
                     onChange={onChangeInput}
@@ -19,10 +19,10 @@ export const ChatPageFooter: FC<IChatPageFooter> = ({input, onChangeInput, handl
                     name="message-text"
                     placeholder="Сообщение"
                     autoFocus
-                    className="chat-page-form_input"
+                    className={styles.chatPageFormInput}
                 />
-                <button type="submit" id="form_send-button" className="chat-page-form_send-button">
-                    <ChevronRightIcon className="material-symbols-outlined" />
+                <button type="submit" id="form_send-button" className={styles.chatPageFormSendButton}>
+                    <ChevronRightIcon className={styles.materialSymbolsOutlined} />
                 </button>
             </form>
         </footer>

@@ -1,4 +1,4 @@
-.chat-page-header {
+.chatsPageHeader {
   height: 60px;
   border-bottom: 2px solid #DDD;
   display: flex;
@@ -9,21 +9,16 @@
   background-color: rgb(252, 197, 33);
 }
 
-.chat-page-header_name {
+.chatsPageHeaderName {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
 }
 
-.material-symbols-outlined {
+.materialSymbolsOutlined {
   cursor: pointer;
 
   &:hover {
     opacity: 50%;
   }
-}
-
-.chat-page-header_icons {
-  display: flex;
-  gap: 10px;
 }

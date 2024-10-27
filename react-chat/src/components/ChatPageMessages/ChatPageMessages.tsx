@@ -1,7 +1,7 @@
 import {type FC} from 'react';
 import {type Message} from '../../types/types';
 import {MessageElement} from '../MessageElement/MessageElement';
-import './ChatPageMessages.scss';
+import styles from './ChatPageMessages.module.scss';
 
 interface IChatPageMessages {
     messages: Message[];
@@ -9,9 +9,9 @@ interface IChatPageMessages {
 
 export const ChatPageMessages: FC<IChatPageMessages> = ({messages}) => {
     return (
-        <main className="chat-page-messages">
-            <div className="chat-page-messages-scroll">
-                <div id="messages" className="chat-page-messages">
+        <main className={styles.chatPageMessages}>
+            <div className={styles.chatPageMessagesScroll}>
+                <div id="messages" className={styles.chatPageMessages}>
                     {messages.map((message, index) => <MessageElement key={index} message={message} />)}
                 </div>
             </div>

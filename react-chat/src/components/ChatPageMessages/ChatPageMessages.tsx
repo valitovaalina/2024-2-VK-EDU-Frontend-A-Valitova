@@ -12,7 +12,7 @@ export const ChatPageMessages: FC<IChatPageMessages> = ({messages}) => {
         <main className={styles.chatPageMessages}>
             <div className={styles.chatPageMessagesScroll}>
                 <div id="messages" className={styles.chatPageMessages}>
-                    {messages.map((message, index) => <MessageElement key={index} message={message} />)}
+                    {messages.map((message, index) => <MessageElement key={`${index}_${message.date.getMilliseconds}`} message={message} />)}
                 </div>
             </div>
         </main>

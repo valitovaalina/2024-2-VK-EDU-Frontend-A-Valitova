@@ -3,17 +3,17 @@ import type {ChangeEvent, FC, FormEvent} from 'react';
 import styles from './ChatPageFooter.module.scss';
 
 interface IChatPageFooter {
-    input: string;
+    inputValue: string;
     onChangeInput(event: ChangeEvent<HTMLInputElement>): void;
     handleSubmit(event: FormEvent<HTMLFormElement>): void;
 }
 
-export const ChatPageFooter: FC<IChatPageFooter> = ({input, onChangeInput, handleSubmit}) => {
+export const ChatPageFooter: FC<IChatPageFooter> = ({inputValue, onChangeInput, handleSubmit}) => {
     return (
         <footer>
             <form id="form" className={styles.chatPageForm} onSubmit={handleSubmit}>
                 <input
-                    value={input}
+                    value={inputValue}
                     onChange={onChangeInput}
                     type="text"
                     name="message-text"

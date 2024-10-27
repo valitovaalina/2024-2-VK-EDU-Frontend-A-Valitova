@@ -1,4 +1,4 @@
-import type {Dispatch, FC, SetStateAction} from 'react';
+import type {FC} from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -6,7 +6,7 @@ import styles from './ChatPageHeader.module.scss';
 
 interface IChatPageHeader {
     chatName: string;
-    setId: Dispatch<SetStateAction<string | null>>;
+    setId(id: string | null): void;
 }
 
 export const ChatPageHeader: FC<IChatPageHeader> = ({chatName, setId}) => {

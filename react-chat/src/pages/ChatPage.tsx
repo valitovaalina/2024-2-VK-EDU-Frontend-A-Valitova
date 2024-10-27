@@ -1,45 +1,51 @@
-import {useEffect, useState, type SetStateAction, type Dispatch, type FC, type FormEvent, type ChangeEvent} from 'react';
+import {useEffect, useState, type FC, type FormEvent, type ChangeEvent} from 'react';
 import {ChatPageFooter} from '../components/ChatPageFooter/ChatPageFooter';
 import {ChatPageHeader} from '../components/ChatPageHeader/ChatPageHeader';
 import {ChatPageMessages} from '../components/ChatPageMessages/ChatPageMessages';
 import type {Message, Chat} from '../types/types';
-import {loadMessagesFromLocalStorage} from '../utils/loadMessagesFromLocalStorage';
-import {saveMessageToLocalStorage} from '../utils/saveMessageToLocalStorage';
+import {loadMessagesFromLocalStorage} from '../api/chatPage/loadMessagesFromLocalStorage';
+import {saveMessageToLocalStorage} from '../api/chatPage/saveMessageToLocalStorage';
 
 interface IChatPage {
-    chat: Chat;
-    setId: Dispatch<SetStateAction<string | null>>;
+    chat: Chat | null;
+    setId(id: string): void;
 }
 
 export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
+    if (!chat) return null;
+
     const [messages, setMessages] = useState<Message[]>(chat.messages);
-    const [input, setInput] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>('');
 
     useEffect(() => {
-        setMessages(loadMessagesFromLocalStorage(chat.id));
+        const messagesFromLocalStorage = loadMessagesFromLocalStorage(chat.id);
+
+        if (messagesFromLocalStorage !== null) {
+            setMessages(messagesFromLocalStorage);
+        }
     }, []);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (input !== '') {
-            const message = {text: input, date: new Date()};
+        if (inputValue !== '') {
+            const message = {text: inputValue, date: new Date()};
             const newMessages = [...messages, message];
             saveMessageToLocalStorage(message, chat.id);
             setMessages(newMessages);
-            setInput('');
+            setInputValue('');
         }
     };
 
     const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-        setInput(event.target.value);
+        setInputValue(event.target.value);
     };
 
     return (
         <div>
             <ChatPageHeader chatName={chat.name} setId={setId} />
             <ChatPageMessages messages={messages} />
-            <ChatPageFooter handleSubmit={handleSubmit} input={input} onChangeInput={onChangeInput} />
+            <ChatPageFooter handleSubmit={handleSubmit} inputValue={inputValue} onChangeInput={onChangeInput} />
         </div>
     );
 };

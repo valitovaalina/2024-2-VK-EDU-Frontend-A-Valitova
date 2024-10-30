@@ -1,5 +1,5 @@
 import {type FC} from 'react';
-import styles from './profileBasicItem.module.scss';
+import styles from './ProfileBasicItem.module.scss';
 
 interface IProfileBasicItem {
     property: string,

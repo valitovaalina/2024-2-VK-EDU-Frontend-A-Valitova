@@ -3,7 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import {type User} from '../../types/types';
 import {ProfileBasicItem} from '../ProfileBasicItem/ProfileBasicItem';
 import avatar from '../../images/avatar_1.jpg';
-import styles from './profileBasic.module.scss';
+import styles from './ProfileBasic.module.scss';
 
 interface IProfileBasic {
     user: User;

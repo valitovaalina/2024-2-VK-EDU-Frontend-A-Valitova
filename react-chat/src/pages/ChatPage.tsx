@@ -8,10 +8,10 @@ import {saveMessageToLocalStorage} from '../api/chatPage/saveMessageToLocalStora
 
 interface IChatPage {
     chat: Chat | null;
-    setId(id: string): void;
+    handleSetId(id: string): void;
 }
 
-export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
+export const ChatPage: FC<IChatPage> = ({chat, handleSetId}) => {
     if (!chat) return null;
 
     const [messages, setMessages] = useState<Message[]>(chat.messages);
@@ -30,7 +30,8 @@ export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
         event.preventDefault();
 
         if (inputValue !== '') {
-            const message = {text: inputValue, date: new Date()};
+            const id = `${messages.length + 1}`;
+            const message = {id, text: inputValue, date: new Date()};
             const newMessages = [...messages, message];
             saveMessageToLocalStorage(message, chat.id);
             setMessages(newMessages);
@@ -48,7 +49,7 @@ export const ChatPage: FC<IChatPage> = ({chat, setId}) => {
 
     return (
         <div>
-            <ChatPageHeader chatName={chat.name} setId={setId} />
+            <ChatPageHeader chatName={chat.name} handleSetId={handleSetId} />
             <ChatPageMessages messages={messages} messagesRef={messagesRef} />
             <ChatPageFooter handleSubmit={handleSubmit} inputValue={inputValue} onChangeInput={onChangeInput} />
         </div>

@@ -6,13 +6,13 @@ import styles from './ChatPageHeader.module.scss';
 
 interface IChatPageHeader {
     chatName: string;
-    setId(id: string | null): void;
+    handleSetId(id: string | null): void;
 }
 
-export const ChatPageHeader: FC<IChatPageHeader> = ({chatName, setId}) => {
+export const ChatPageHeader: FC<IChatPageHeader> = ({chatName, handleSetId}) => {
     return (
         <header className={styles.chatPageHeader}>
-            <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={() => setId(null)} />
+            <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={() => handleSetId(null)} />
             <h1 className={styles.chatPageHeaderName}>{chatName}</h1>
             <div className={styles.chatPageHeaderIcons}>
                 <SearchIcon className={styles.materialSymbolsOutlined} />

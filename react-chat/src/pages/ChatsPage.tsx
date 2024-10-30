@@ -8,23 +8,23 @@ import {saveChatsToLocalStorage} from '../api/chatsPage/saveChatsToLocalStorage'
 
 interface IChatsPage {
     chats: Chat[];
-    setChats(chats: Chat[]): void;
-    setId(is: string | null): void;
+    handleSetChats(chats: Chat[]): void;
+    handleSetId(id: string | null): void;
 }
 
-export const ChatsPage: FC<IChatsPage> = ({chats, setChats, setId}) => {
+export const ChatsPage: FC<IChatsPage> = ({chats, handleSetChats, handleSetId}) => {
     const addChat = (): void => {
         const id = `${chats.length + 1}`;
-        const chat: Chat = {id, name: `Чувак ${id}`, avatar, messages: [{date: new Date(), text: 'hey'}], isReadability: false};
+        const chat: Chat = {id, name: `Чувак ${id}`, avatar, messages: [{id: '1', date: new Date(), text: 'hey'}], isReadability: false};
         const newChats = [...chats, chat];
         saveChatsToLocalStorage(newChats);
-        setChats(newChats);
+        handleSetChats(newChats);
     }
 
     return (
         <div>
             <ChatsPageHeader />
-            <ChatsPageItemsList setId={setId} />
+            <ChatsPageItemsList handleSetId={handleSetId} />
             <NewChatButton onClick={addChat} />
         </div>
     );

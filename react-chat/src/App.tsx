@@ -10,6 +10,10 @@ export function App() {
     const [id, setId] = useState<string | null>(null);
     const [chats, setChats] = useState<Chat[]>([]);
     const filterChat = chats.filter((el) => el.id === id);
+    const handleSetId = (id: string | null) => setId(id);
+    const handleSetChats = (chats: Chat[]) => setChats(chats);
+    const chat = filterChat ? filterChat[0] : null;
+    
     
     useEffect(() => {
         if (getChatsFromLocalStorage().length === 0) {
@@ -18,5 +22,5 @@ export function App() {
         setChats(getChatsFromLocalStorage());
     }, []);
 
-    return id === null ? <ChatsPage setId={setId} chats={chats} setChats={(chats: Chat[]) => setChats(chats)}/> : <ChatPage chat={filterChat ? filterChat[0] : null} setId={setId} />;
+    return id === null ? <ChatsPage handleSetId={handleSetId} chats={chats} handleSetChats={handleSetChats}/> : <ChatPage chat={chat} handleSetId={handleSetId} />;
 }

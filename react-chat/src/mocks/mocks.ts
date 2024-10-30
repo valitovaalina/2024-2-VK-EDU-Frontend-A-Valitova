@@ -1,4 +1,4 @@
-import {type Chat} from '../types/types';
+import {User, type Chat} from '../types/types';
 
 export const chatsMocks: Chat[] = [
     {
@@ -86,3 +86,10 @@ export const chatsMocks: Chat[] = [
         isReadability: true,
     }
 ];
+
+export const userMock: User = {
+    first_name: 'Алина',
+    last_name: 'Валитова',
+    bio: 'lalalalalalaallalalalalala',
+    avatar: './images/avatar_1.jpg',
+}

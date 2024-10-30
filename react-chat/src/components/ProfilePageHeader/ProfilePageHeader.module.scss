@@ -1,4 +1,4 @@
-.chatsPageHeader {
+.profilePageHeader {
   height: 60px;
   border-bottom: 2px solid #DDD;
   display: flex;
@@ -9,15 +9,10 @@
   background-color: rgb(252, 197, 33);
 }
 
-.chatsPageHeaderName {
+.profilePageHeaderName {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-}
-
-.chatsPageHeaderIcons {
-  display: flex;
-  gap: 10px;
 }
 
 .materialSymbolsOutlined {
@@ -26,4 +21,9 @@
   &:hover {
     opacity: 50%;
   }
+}
+
+.profilePageHeaderIcons {
+  display: flex;
+  gap: 10px;
 }

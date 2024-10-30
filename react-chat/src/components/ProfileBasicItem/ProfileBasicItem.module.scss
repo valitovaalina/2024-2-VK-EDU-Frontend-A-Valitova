@@ -1,0 +1,18 @@
+.infoBlock {
+  display: grid;
+  grid-template-columns: 150px 200px;
+  gap: 40px;
+  margin-bottom: 15px;
+}
+
+.property {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.value {
+  color: rgba(0, 0, 0, 0.80);
+  font-size: 20px;
+  font-weight: 500;
+}

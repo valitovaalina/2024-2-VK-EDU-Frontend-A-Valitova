@@ -1,0 +1,44 @@
+.container {
+  margin: 30px;
+}
+
+.userImg {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 100%;
+}
+
+.header {
+  color: rgba(0, 0, 0, 0.80);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.button {
+  border-radius: 8px;
+  background: #FFDD2D;
+  border: none;
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  width: 200px;
+  height: 50px;
+  margin-top: 10px;
+
+  &:hover {
+    background: #fab619;
+  }
+
+  &:disabled {
+    background: rgb(179, 178, 178);
+  }
+}

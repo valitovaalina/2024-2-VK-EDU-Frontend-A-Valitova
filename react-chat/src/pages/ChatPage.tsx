@@ -12,12 +12,10 @@ import {AppRoute} from '../consts/AppRoute';
 export const ChatPage: FC = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const [inputValue, setInputValue] = useState<string>('');
+    const messagesRef = useRef<any>();
     const filterChat = getChatsFromLocalStorage().filter((el) => el.id === id);
     const chat = filterChat ? filterChat[0] : null;
-
-    useEffect(() => {
-        if (!chat) navigate(AppRoute.Chats);
-    }, []);
 
     useEffect(() => {
         const messagesFromLocalStorage = id ? loadMessagesFromLocalStorage(id) : null;
@@ -27,9 +25,12 @@ export const ChatPage: FC = () => {
         }
     }, [id]);
 
+    if (!chat) {
+        navigate(AppRoute.Chats);
+        return null;
+    };
+
     const [messages, setMessages] = useState<Message[]>(chat.messages);
-    const [inputValue, setInputValue] = useState<string>('');
-    const messagesRef = useRef<any>();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

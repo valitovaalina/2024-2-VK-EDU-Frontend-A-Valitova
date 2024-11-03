@@ -8,7 +8,7 @@ interface INewChatButton {
 
 export const NewChatButton: FC<INewChatButton> = ({onClick}) => {
     return (
-        <div className={styles.newChatButton} onClick={onClick}>
+        <div className={styles.button} onClick={onClick}>
             <EditIcon className="material-symbols-outlined" />
         </div>
     );

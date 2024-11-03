@@ -1,7 +1,7 @@
 import {type FC} from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-import {type Chat} from '../../types/types';
+import type {Chat} from '../../types/chats/index';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './ChatsPageItem.module.scss';
 
@@ -13,6 +13,7 @@ interface IChatsPageItem {
 export const ChatsPageItem: FC<IChatsPageItem> = ({chat, onClick}) => {
     const {name, messages, isReadability = false} = chat;
     const latestMessage = messages[messages.length - 1];
+    const latestMessageText = latestMessage.text.length > 20 ? `${latestMessage.text.slice(0, 20)}...` : latestMessage.text;
     const formattedDate = new Date(latestMessage.date).toLocaleTimeString();
 
     return (
@@ -21,7 +22,7 @@ export const ChatsPageItem: FC<IChatsPageItem> = ({chat, onClick}) => {
                 <img src={avatar} alt={name} className={styles.chatAvatar} />
                 <div className={styles.chatContent}>
                     <h2 className={styles.chatName}>{name}</h2>
-                    <p className={styles.chatLastMessage}>{latestMessage.text}</p>
+                    <p className={styles.chatLastMessage}>{latestMessageText}</p>
                 </div>
             </div>
             <div className={styles.chatIndicators}>

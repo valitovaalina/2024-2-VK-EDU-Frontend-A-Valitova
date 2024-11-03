@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {ChatsPageHeader} from '../components/ChatsPageHeader/ChatsPageHeader';
 import {ChatsPageItemsList} from '../components/ChatsPageItemsList/ChatsPageItemsList';
 import {NewChatButton} from '../components/NewChatButton/NewChatButton';
-import {Chat} from '../types/types';
+import type {Chat} from '../types/chats/index';
 import avatar from '../images/avatar_1.jpg';
 import {saveChatsToLocalStorage} from '../api/chatsPage/saveChatsToLocalStorage';
 import {getChatsFromLocalStorage} from '../api/chatsPage/getChatsFromLocalStorage';

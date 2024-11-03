@@ -11,7 +11,7 @@ interface IChatPageFooter {
 export const ChatPageFooter: FC<IChatPageFooter> = ({inputValue, onChangeInput, handleSubmit}) => {
     return (
         <footer>
-            <form id="form" className={styles.chatPageForm} onSubmit={handleSubmit}>
+            <form id="form" className={styles.form} onSubmit={handleSubmit}>
                 <input
                     value={inputValue}
                     onChange={onChangeInput}
@@ -19,9 +19,9 @@ export const ChatPageFooter: FC<IChatPageFooter> = ({inputValue, onChangeInput, 
                     name="message-text"
                     placeholder="Сообщение"
                     autoFocus
-                    className={styles.chatPageFormInput}
+                    className={styles.formInput}
                 />
-                <button type="submit" id="form_send-button" className={styles.chatPageFormSendButton}>
+                <button type="submit" id="form_send-button" className={styles.formSendButton}>
                     <ChevronRightIcon className={styles.materialSymbolsOutlined} />
                 </button>
             </form>

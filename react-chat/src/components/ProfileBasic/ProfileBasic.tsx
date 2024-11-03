@@ -1,6 +1,6 @@
 import {type FC} from 'react';
 import EditIcon from '@mui/icons-material/Edit';
-import {type User} from '../../types/types';
+import type {User} from '../../types/user/index';
 import {ProfileBasicItem} from '../ProfileBasicItem/ProfileBasicItem';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasic.module.scss';

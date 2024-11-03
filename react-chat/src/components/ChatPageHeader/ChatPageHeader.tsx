@@ -12,10 +12,11 @@ interface IChatPageHeader {
 
 export const ChatPageHeader: FC<IChatPageHeader> = ({chatName}) => {
     const navigate = useNavigate();
+    const onArrowBackIconClick = () => navigate(AppRoute.Chats);
     
     return (
         <header className={styles.chatPageHeader}>
-            <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={() => navigate(AppRoute.Chats)} />
+            <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={onArrowBackIconClick} />
             <h1 className={styles.chatPageHeaderName}>{chatName}</h1>
             <div className={styles.chatPageHeaderIcons}>
                 <SearchIcon className={styles.materialSymbolsOutlined} />

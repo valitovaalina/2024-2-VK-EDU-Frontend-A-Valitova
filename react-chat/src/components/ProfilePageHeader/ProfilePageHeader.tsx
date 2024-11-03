@@ -6,12 +6,13 @@ import styles from './ProfilePageHeader.module.scss';
 
 export const ProfilePageHeader = (): React.ReactElement  => {
     const navigate = useNavigate();
+    const onArrowBackIconClick = () => navigate(AppRoute.Chats);
     
     return (
-        <header className={styles.profilePageHeader}>
-            <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={() => navigate(AppRoute.Chats)} />
-            <h1 className={styles.profilePageHeaderName}>{'Профиль'}</h1>
-            <div className={styles.profilePageHeaderIcons}>
+        <header className={styles.header}>
+            <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={onArrowBackIconClick} />
+            <h1 className={styles.headerName}>{'Профиль'}</h1>
+            <div className={styles.headerIcons}>
                 <SearchIcon className={styles.materialSymbolsOutlined} />
             </div>
         </header>

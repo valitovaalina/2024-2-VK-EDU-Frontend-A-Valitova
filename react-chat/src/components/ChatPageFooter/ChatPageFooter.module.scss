@@ -2,7 +2,7 @@ input[type=submit] {
   visibility: collapse;
 }
 
-.chatPageForm {
+.form {
   width: 100%;
   border: 1px solid rgba(25, 25, 25, 0.32);
   position: fixed;
@@ -14,18 +14,18 @@ input[type=submit] {
   min-height: 60px;
   max-height: 100px;
   align-items: center;
-}
 
-.chatPageFormInput {
-  outline: 0;
-  width: 100%;
-  padding: 10px 13px 10px 23px;
-  border: 0;
-}
+  &Input {
+    outline: 0;
+    width: 100%;
+    padding: 10px 13px 10px 23px;
+    border: 0;
+  }
 
-.chatPageFormSendButton {
-  background: none;
-  border: none;
+  &SendButton {
+    background: none;
+    border: none;
+  }
 }
 
 .materialSymbolsOutlined {

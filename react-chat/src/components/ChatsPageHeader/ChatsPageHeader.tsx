@@ -8,14 +8,15 @@ import {AppRoute} from '../../consts/AppRoute';
 
 export const ChatsPageHeader: FC = () => {
     const navigate = useNavigate();
+    const onPersonIconClick = () => navigate(AppRoute.Profile);
 
     return (
-        <header className={styles.chatsPageHeader}>
+        <header className={styles.header}>
             <MenuIcon className={styles.materialSymbolsOutlined} />
-            <h1 className={styles.chatsPageHeaderName}>Чаты</h1>
-            <div className={styles.chatsPageHeaderIcons}>
+            <h1 className={styles.headerName}>Чаты</h1>
+            <div className={styles.headerIcons}>
                 <SearchIcon className={styles.materialSymbolsOutlined} />
-                <PersonIcon className={styles.materialSymbolsOutlined} onClick={() => navigate(AppRoute.Profile)}/>
+                <PersonIcon className={styles.materialSymbolsOutlined} onClick={onPersonIconClick} />
             </div>
         </header>
     );

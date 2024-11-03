@@ -4,10 +4,12 @@ import {ProfilePageHeader} from '../components/ProfilePageHeader/ProfilePageHead
 import {userMock} from '../mocks/mocks';
 
 export const ProfilePage: FC = () => {
+    const editBasicHandler = () => {};
+
     return (
         <div>
             <ProfilePageHeader />
-            <ProfileBasic user={userMock} editBasicHandler={() => {}} />
+            <ProfileBasic user={userMock} editBasicHandler={editBasicHandler} />
         </div>
     );
 }

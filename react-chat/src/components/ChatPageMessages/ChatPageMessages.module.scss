@@ -1,23 +1,23 @@
-.chatPageMessagesScroll {
+.messagesScroll {
   max-height: 630px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.chatPageMessages {
+.messages {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
 
-.chatPageMessages::-webkit-scrollbar {
-  height: 100px;
-  width: 7px;
-}
+  &::-webkit-scrollbar {
+    height: 100px;
+    width: 7px;
+  }
 
-.chatPageMessages::-webkit-scrollbar-thumb {
-  background-color: #A6A3A3;
-  border-radius: 20px;
-  border: 3px solid transparent;
+  &::-webkit-scrollbar-thumb {
+    background-color: #A6A3A3;
+    border-radius: 20px;
+    border: 3px solid transparent;
+  }
 }

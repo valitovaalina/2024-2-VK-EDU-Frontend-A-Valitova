@@ -9,7 +9,7 @@ export const ChatsPageItemsList: FC = () => {
     const navigate = useNavigate();
 
     return (
-        <ul className={styles.chatsPageItemsList}>
+        <ul className={styles.list}>
             {chatsFromLocalStorage.map((chat) => <ChatsPageItem key={chat.id} chat={chat} onClick={() => navigate(`/chat/${chat.id}`)} />)}
         </ul>
     );

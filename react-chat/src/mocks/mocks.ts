@@ -1,4 +1,5 @@
-import {User, type Chat} from '../types/types';
+import type {User} from '../types/user/index';
+import type {Chat} from '../types/chats/index';
 
 export const chatsMocks: Chat[] = [
     {

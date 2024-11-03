@@ -1,4 +1,4 @@
-.chatsPageHeader {
+.header {
   height: 60px;
   border-bottom: 2px solid #DDD;
   display: flex;
@@ -7,17 +7,17 @@
   padding-left: 20px;
   padding-right: 20px;
   background-color: rgb(252, 197, 33);
-}
 
-.chatsPageHeaderName {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-}
+  &Name {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+  }
 
-.chatsPageHeaderIcons {
-  display: flex;
-  gap: 10px;
+  &Icons {
+    display: flex;
+    gap: 10px;
+  }
 }
 
 .materialSymbolsOutlined {

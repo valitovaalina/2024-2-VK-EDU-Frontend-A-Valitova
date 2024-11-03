@@ -1,4 +1,4 @@
-.profilePageHeader {
+.header {
   height: 60px;
   border-bottom: 2px solid #DDD;
   display: flex;
@@ -7,12 +7,17 @@
   padding-left: 20px;
   padding-right: 20px;
   background-color: rgb(252, 197, 33);
-}
 
-.profilePageHeaderName {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
+  &Name {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  &Icons {
+    display: flex;
+    gap: 10px;
+  }
 }
 
 .materialSymbolsOutlined {
@@ -21,9 +26,4 @@
   &:hover {
     opacity: 50%;
   }
-}
-
-.profilePageHeaderIcons {
-  display: flex;
-  gap: 10px;
 }

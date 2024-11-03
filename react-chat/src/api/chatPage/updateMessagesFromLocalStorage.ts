@@ -1,4 +1,5 @@
-import type {Chat, Message} from '../../types/types';
+import type {Message} from '../../types/messages/index';
+import type {Chat} from '../../types/chats/index';
 import {getChatsFromLocalStorage} from '../chatsPage/getChatsFromLocalStorage';
 
 export const updateMessagesFromLocalStorage = (message: Message, chatId: string): Chat[] => {

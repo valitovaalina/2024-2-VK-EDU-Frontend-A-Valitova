@@ -1,9 +1,9 @@
 import {type FC, type FormEvent, useEffect, useState} from 'react';
-import {ProfileInput} from '../profileInput/profileInput';
 import {useInput} from '../../hooks/useInput';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './profileBasicEdit.module.scss';
 import type {User} from '../../types/user/index';
+import {ProfileInput} from '../ProfileInput/ProfileInput';
 
 interface IProfileBasicEdit {
     user: User;
@@ -66,7 +66,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     required
                     errorText={firstNameMaxLengthError.length > 0 ? firstNameMaxLengthError : firstNameIsEmpty}
                     isError={firstNameMaxLengthError.length > 0 ? true : firstNameIsEmpty.length > 0}
-                    onChange={(e) => {
+                    onChange={(e: FormEvent<HTMLInputElement>) => {
                         const newFirstName = String(e.currentTarget.value);
                         setCurrentFirstName(newFirstName);
                         user.first_name = newFirstName;
@@ -83,7 +83,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     required
                     errorText={lastNameMaxLengthError.length > 0 ? lastNameMaxLengthError : lastNameIsEmpty}
                     isError={lastNameMaxLengthError.length > 0 ? true : lastNameIsEmpty.length > 0}
-                    onChange={e => {
+                    onChange={(e: FormEvent<HTMLInputElement>) => {
                         const newLastName = String(e.currentTarget.value);
                         setCurrentLastName(newLastName);
                         user.last_name = newLastName;
@@ -100,7 +100,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     required
                     errorText={bioMaxLengthError.length > 0 ? bioMaxLengthError : bioIsEmpty}
                     isError={bioMaxLengthError.length > 0 ? true : bioIsEmpty.length > 0}
-                    onChange={e => {
+                    onChange={(e: FormEvent<HTMLInputElement>) => {
                         const newBio = String(e.currentTarget.value);
                         setCurrentBio(newBio);
                         user.bio = newBio;

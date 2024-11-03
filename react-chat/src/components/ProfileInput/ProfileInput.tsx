@@ -1,5 +1,5 @@
 import {type FC, type FormEvent} from 'react';
-import styles from './profileInput.module.scss';
+import styles from './ProfileInput.module.scss';
 
 export interface IProfileInput {
     value: string;

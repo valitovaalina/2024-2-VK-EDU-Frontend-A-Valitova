@@ -1,7 +1,7 @@
 import {type FC, type FormEvent, useEffect, useState} from 'react';
 import {useInput} from '../../hooks/useInput';
 import avatar from '../../images/avatar_1.jpg';
-import styles from './profileBasicEdit.module.scss';
+import styles from './ProfileBasicEdit.module.scss';
 import type {User} from '../../types/user/index';
 import {ProfileInput} from '../ProfileInput/ProfileInput';
 

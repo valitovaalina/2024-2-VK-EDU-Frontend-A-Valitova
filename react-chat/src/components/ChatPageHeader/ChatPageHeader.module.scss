@@ -1,0 +1,29 @@
+.chatPageHeader {
+  height: 60px;
+  border-bottom: 2px solid #DDD;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgb(252, 197, 33);
+}
+
+.chatPageHeaderName {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.materialSymbolsOutlined {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 50%;
+  }
+}
+
+.chatPageHeaderIcons {
+  display: flex;
+  gap: 10px;
+}

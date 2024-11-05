@@ -1,5 +1,5 @@
 import {type FC} from 'react';
-import {type Message} from '../../types/types';
+import type {Message} from '../../types/messages/index';
 import styles from './MessageElement.module.scss';
 
 interface IMessageElement {

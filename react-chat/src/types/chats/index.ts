@@ -1,8 +1,4 @@
-export type Message = {
-    id: string;
-    text: string;
-    date: Date;
-}
+import {Message} from '../messages';
 
 export type Chat = {
     id: string;

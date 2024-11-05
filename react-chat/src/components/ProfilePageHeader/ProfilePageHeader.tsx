@@ -1,27 +1,20 @@
-import type {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
-import SettingsIcon from '@mui/icons-material/Settings';
-import styles from './ChatPageHeader.module.scss';
 import {AppRoute} from '../../consts/AppRoute';
+import styles from './ProfilePageHeader.module.scss';
 
-interface IChatPageHeader {
-    chatName: string;
-}
-
-export const ChatPageHeader: FC<IChatPageHeader> = ({chatName}) => {
+export const ProfilePageHeader = (): React.ReactElement  => {
     const navigate = useNavigate();
     const onArrowBackIconClick = () => navigate(AppRoute.Chats);
     
     return (
-        <header className={styles.chatPageHeader}>
+        <header className={styles.header}>
             <ArrowBackIcon className={styles.materialSymbolsOutlined} onClick={onArrowBackIconClick} />
-            <h1 className={styles.chatPageHeaderName}>{chatName}</h1>
-            <div className={styles.chatPageHeaderIcons}>
+            <h1 className={styles.headerName}>{'Профиль'}</h1>
+            <div className={styles.headerIcons}>
                 <SearchIcon className={styles.materialSymbolsOutlined} />
-                <SettingsIcon className={styles.materialSymbolsOutlined} />
             </div>
         </header>
     );
-};
+}

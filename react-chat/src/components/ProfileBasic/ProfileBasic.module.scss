@@ -1,0 +1,38 @@
+.profileBasic {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 30px;
+}
+
+.userImg {
+  background-image: url('https://avatars.mds.yandex.net/i?id=779e52f6fae71c3088280fa7e11489d12576961d-10448622-images-thumbs&n=13');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 100%;
+}
+
+.header {
+  color: rgba(0, 0, 0, 0.80);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.materialSymbolsOutlined {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 50%;
+  }
+}

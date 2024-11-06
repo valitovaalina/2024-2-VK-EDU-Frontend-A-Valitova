@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import {defineConfig} from 'vite';
+import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -7,5 +7,5 @@ export default defineConfig({
   css: {
     postcss: {}
   },
-  base: '2024-2-VK-EDU-Frontend-A-Valitova'
+  base: 'https://valitovaalina.github.io/2024-2-VK-EDU-Frontend-A-Valitova/'
 })

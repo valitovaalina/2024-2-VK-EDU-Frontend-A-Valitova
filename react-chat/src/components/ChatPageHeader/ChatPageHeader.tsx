@@ -4,7 +4,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import styles from './ChatPageHeader.module.scss';
-import {AppRoute} from '../../consts/AppRoute';
+import {AppApiRoute} from '../../consts/AppRoute';
 
 interface IChatPageHeader {
     chatName: string;
@@ -12,7 +12,7 @@ interface IChatPageHeader {
 
 export const ChatPageHeader: FC<IChatPageHeader> = ({chatName}) => {
     const navigate = useNavigate();
-    const onArrowBackIconClick = () => navigate(AppRoute.Chats);
+    const onArrowBackIconClick = () => navigate(AppApiRoute.Chats);
     
     return (
         <header className={styles.chatPageHeader}>

@@ -2,6 +2,7 @@ import {type FC, type FormEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AuthApi} from '../../api/auth';
 import {AppApiRoute} from '../../consts/AppRoute';
+import {useAuth} from '../../hooks/useAuth';
 import {useInput} from '../../hooks/useInput';
 import {AuthHeader} from '../AuthHeader/AuthHeader';
 import {AuthHelpAction} from '../AuthHelpAction/AuthHelpAction';
@@ -10,6 +11,7 @@ import styles from './LoginPageForm.module.scss';
 
 export const LoginPageForm: FC = () => {
     const navigate = useNavigate();
+    const {setUserAuth} = useAuth();
     const username = useInput('', {isEmpty: true, maxLength: 50});
     const password = useInput('', {isEmpty: true, maxLength: 50});
     const usernameMaxLengthError = (username.isDirty && username.maxLengthError) && <div className={styles.error}>Поле должно содержать меньше 50 символов!</div>;
@@ -28,6 +30,7 @@ export const LoginPageForm: FC = () => {
                 password: password.value
             });
             if (data) {
+                setUserAuth(true);
                 navigate(AppApiRoute.Chats);
             }
         } catch (error) {

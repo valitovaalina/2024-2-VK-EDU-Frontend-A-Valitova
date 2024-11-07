@@ -5,6 +5,7 @@ import {AppApiRoute, AppRoute} from './consts/AppRoute';
 import {ProfilePage} from './pages/ProfilePage';
 import {LoginPage} from './pages/LoginPage';
 import {RegisterPage} from './pages/RegisterPage';
+import {PrivateRoute} from './components/PrivateRoute/PrivateRoute';
 
 export function App() {
     return (
@@ -13,9 +14,30 @@ export function App() {
                 <Route path={AppApiRoute.Root} element={<LoginPage />} />
                 <Route path={AppApiRoute.Login} element={<LoginPage />} />
                 <Route path={AppApiRoute.Register} element={<RegisterPage />} />
-                <Route path={AppApiRoute.Chats} element={<ChatsPage />} />
-                <Route path={AppRoute.Chat} element={<ChatPage />} />
-                <Route path={AppRoute.Profile} element={<ProfilePage />} />
+                <Route
+                    path={AppApiRoute.Chats}
+                    element={
+                        <PrivateRoute>
+                            <ChatsPage />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path={AppRoute.Chat}
+                    element={
+                        <PrivateRoute>
+                            <ChatPage />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path={AppRoute.Profile}
+                    element={
+                        <PrivateRoute>
+                            <ProfilePage />
+                        </PrivateRoute>
+                    }
+                />
             </Routes>
         </HashRouter>
     );

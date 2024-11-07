@@ -1,12 +1,12 @@
 import {useNavigate} from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
-import {AppRoute} from '../../consts/AppRoute';
+import {AppApiRoute} from '../../consts/AppRoute';
 import styles from './ProfilePageHeader.module.scss';
 
 export const ProfilePageHeader = (): React.ReactElement  => {
     const navigate = useNavigate();
-    const onArrowBackIconClick = () => navigate(AppRoute.Chats);
+    const onArrowBackIconClick = () => navigate(AppApiRoute.Chats);
     
     return (
         <header className={styles.header}>

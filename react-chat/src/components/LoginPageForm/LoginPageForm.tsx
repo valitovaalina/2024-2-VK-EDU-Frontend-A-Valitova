@@ -43,7 +43,7 @@ export const LoginPageForm: FC = () => {
                     {usernameMaxLengthError}{usernameIsError}
                     <AuthInput onChange={username.onChange} onBlur={username.onBlur} value={username.value} type='username' placeholder='Username' id='username' labelText='Username' />
                     {passwordIsEmpty}{passwordMaxLengthError}
-                    <AuthInput onChange={password.onChange} onBlur={password.onBlur} value={password.value} type='password' placeholder='Passord' id='password' labelText='Password' />
+                    <AuthInput onChange={password.onChange} onBlur={password.onBlur} value={password.value} type='password' placeholder='Password' id='password' labelText='Password' />
                     <button
                         type={'submit'}
                         className={styles.button}

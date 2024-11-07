@@ -7,5 +7,5 @@ export default defineConfig({
   css: {
     postcss: {}
   },
-  base: 'https://valitovaalina.github.io/2024-2-VK-EDU-Frontend-A-Valitova/'
+  base: '2024-2-VK-EDU-Frontend-A-Valitova'
 })

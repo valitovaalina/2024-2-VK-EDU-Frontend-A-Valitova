@@ -30,7 +30,8 @@ export const createAPI = (): AxiosInstance => {
             const errorResponse = error.response;
 
             if (errorResponse && errorConfig && errorConfig?.url !== '/auth/refresh/' && errorConfig?.url !== '/register/') {
-                if (errorResponse.status === 401) {
+                if (errorResponse.status === 401 && errorConfig.fetchOptions && !errorConfig.fetchOptions._retry) {
+                    errorConfig.fetchOptions._retry = true;
                     const token = localStorageService.getRefreshToken();
 
                     if (token) {
@@ -39,9 +40,6 @@ export const createAPI = (): AxiosInstance => {
                         localStorageService.setTokens(response.data.access, response.data.refresh);
 
                         return api(errorConfig);
-                    }
-                    else {
-                        throw new Error('Unauthorized');
                     }
                 }
             }

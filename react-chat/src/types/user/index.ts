@@ -5,11 +5,16 @@ export type User = {
     avatar: string;
 }
 
+export type AuthUserApiType = {
+    username: string;
+    password: string;
+}
+
 export type UserApiType = {
     username: string;
     password: string;
     first_name: string;
     last_name: string;
     bio?: string;
-    avatar?: FormData;
+    avatar?: string;
 }

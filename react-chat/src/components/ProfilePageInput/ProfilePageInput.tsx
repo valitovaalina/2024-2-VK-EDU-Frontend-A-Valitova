@@ -1,7 +1,7 @@
 import {type FC, type FormEvent} from 'react';
-import styles from './ProfileInput.module.scss';
+import styles from './ProfilePageInput.module.scss';
 
-export interface IProfileInput {
+export interface IProfilePageInput {
     value: string;
     type: string;
     placeholder: string;
@@ -15,7 +15,7 @@ export interface IProfileInput {
     onBlur: (e: FormEvent<HTMLInputElement>) => void;
 }
 
-export const ProfileInput: FC<IProfileInput> = ({...props}) => {
+export const ProfilePageInput: FC<IProfilePageInput> = ({...props}) => {
     return (
         <p className={styles.box}>
             <label className={styles.label} htmlFor={props.id}>

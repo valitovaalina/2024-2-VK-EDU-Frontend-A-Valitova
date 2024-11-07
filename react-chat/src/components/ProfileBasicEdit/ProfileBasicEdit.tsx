@@ -3,7 +3,7 @@ import {useInput} from '../../hooks/useInput';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasicEdit.module.scss';
 import type {User} from '../../types/user/index';
-import {ProfileInput} from '../ProfileInput/ProfileInput';
+import {ProfilePageInput} from '../ProfilePageInput/ProfilePageInput';
 
 interface IProfileBasicEdit {
     user: User;
@@ -56,7 +56,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     setReady(true);
                 }}>
                 <h1 className={styles.header}>Основное</h1>
-                <ProfileInput
+                <ProfilePageInput
                     value={user.first_name}
                     type='text'
                     placeholder='Имя'
@@ -73,7 +73,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     }}
                     onBlur={firstName.onBlur}
                 />
-                <ProfileInput
+                <ProfilePageInput
                     value={user.last_name}
                     type='text'
                     placeholder='Фамилия'
@@ -90,7 +90,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     }}
                     onBlur={lastName.onBlur}
                 />
-                <ProfileInput
+                <ProfilePageInput
                     value={user.bio}
                     type='text'
                     placeholder='Bio'
@@ -115,7 +115,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     }}
                     disabled={isButtonDisabled}
                 >
-                    {'Сохранить'}
+                    Сохранить
                 </button>
             </form>
         </div>

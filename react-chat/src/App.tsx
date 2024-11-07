@@ -10,6 +10,7 @@ export function App() {
     return (
         <HashRouter>
             <Routes>
+                <Route path={AppApiRoute.Root} element={<LoginPage />} />
                 <Route path={AppApiRoute.Login} element={<LoginPage />} />
                 <Route path={AppApiRoute.Register} element={<RegisterPage />} />
                 <Route path={AppApiRoute.Chats} element={<ChatsPage />} />

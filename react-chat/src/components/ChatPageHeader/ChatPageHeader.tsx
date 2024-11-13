@@ -7,7 +7,7 @@ import styles from './ChatPageHeader.module.scss';
 import {AppApiRoute} from '../../consts/AppRoute';
 
 interface IChatPageHeader {
-    chatName: string;
+    chatName?: string;
 }
 
 export const ChatPageHeader: FC<IChatPageHeader> = ({chatName}) => {

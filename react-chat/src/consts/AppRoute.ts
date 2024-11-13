@@ -10,6 +10,6 @@ export const AppApiRoute = {
     Register: '/register',
     Chats: '/chats',
     Chat: '/chat',
-    ChatWithChatId: '/chat/:chatId',
+    ChatWithChatId: '/chat/:id',
     Profile: '/profile',
 }

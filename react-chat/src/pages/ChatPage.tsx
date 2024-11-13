@@ -3,44 +3,82 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {ChatPageFooter} from '../components/ChatPageFooter/ChatPageFooter';
 import {ChatPageHeader} from '../components/ChatPageHeader/ChatPageHeader';
 import {ChatPageMessages} from '../components/ChatPageMessages/ChatPageMessages';
-import type {Message} from '../types/messages/index';
-import {loadMessagesFromLocalStorage} from '../api/chatPage/loadMessagesFromLocalStorage';
-import {saveMessageToLocalStorage} from '../api/chatPage/saveMessageToLocalStorage';
-import {getChatsFromLocalStorage} from '../api/chatsPage/getChatsFromLocalStorage';
-import {AppRoute} from '../consts/AppRoute';
+import type {MessageApiType} from '../types/messages/index';
+import {AppApiRoute} from '../consts/AppRoute';
+import {MessagesApi} from '../api/messages';
+import {ChatsApi} from '../api/chats';
+import type {ChatApiType} from '../types/chats';
 
 export const ChatPage: FC = () => {
     const {id} = useParams();
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState<string>('');
+    const [messages, setMessages] = useState<MessageApiType[] | []>([]);
+    const [chat, setChat] = useState<ChatApiType | null>(null);
     const messagesRef = useRef<any>();
-    const filterChat = getChatsFromLocalStorage().filter((el) => el.id === id);
-    const chat = filterChat ? filterChat[0] : null;
+    const messagesApi = new MessagesApi();
+    const chatsApi = new ChatsApi();
 
-    useEffect(() => {
-        const messagesFromLocalStorage = id ? loadMessagesFromLocalStorage(id) : null;
-
-        if (messagesFromLocalStorage !== null) {
-            setMessages(messagesFromLocalStorage);
-        }
-    }, [id]);
-
-    if (!chat) {
-        navigate(AppRoute.Chats);
+    if (!id) {
+        navigate(AppApiRoute.Chats);
         return null;
+    }
+
+    const getChat = async () => {
+        try {
+            const data = await chatsApi.getChat(id);
+            
+            if (data) {
+                setChat(data);
+            }
+        } catch (error) {
+            navigate(AppApiRoute.Login);
+            alert(error);
+        }
     };
 
-    const [messages, setMessages] = useState<Message[]>(chat.messages);
+    const getMessages = async () => {
+        try {
+            const data = await messagesApi.getMessages(id);
+            
+            if (data) {
+                setMessages(data.results);
+            }
+        } catch (error) {
+            navigate(AppApiRoute.Login);
+            alert(error);
+        }
+    };
+
+    const sendMessage = async (text: string) => {
+        try {
+            const data = await messagesApi.createNewMessage(text, id);
+            
+            if (data) {
+                setMessages((messages: MessageApiType[] | null) => messages ? [...messages, data] : [data]);
+            }
+        } catch (error) {
+            navigate(AppApiRoute.Login);
+            alert(error);
+        }
+    }
+
+    useEffect(() => {
+        getChat()
+        getMessages();
+
+        const timerId = setInterval(() => {
+            getMessages();
+        }, 10000);
+
+        return () => clearInterval(timerId);
+    }, []);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (inputValue !== '' && id) {
-            const messageId = `${messages.length + 1}`;
-            const message = {id: messageId, text: inputValue, date: new Date()};
-            const newMessages = [...messages, message];
-            saveMessageToLocalStorage(message, id);
-            setMessages(newMessages);
+        if (inputValue !== '') {
+            sendMessage(inputValue);
             setInputValue('');
 
             if (messagesRef.current) {
@@ -55,7 +93,7 @@ export const ChatPage: FC = () => {
 
     return (
         <div>
-            <ChatPageHeader chatName={chat.name} />
+            <ChatPageHeader chatName={chat?.title} />
             <ChatPageMessages messages={messages} messagesRef={messagesRef} />
             <ChatPageFooter handleSubmit={handleSubmit} inputValue={inputValue} onChangeInput={onChangeInput} />
         </div>

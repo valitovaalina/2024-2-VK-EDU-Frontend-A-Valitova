@@ -1,9 +1,9 @@
 import {createAPI} from '../../services/apiService';
-import {type ChatApiType, type ChatsListApiType} from '../../types/chats';
+import {type ChatApiType} from '../../types/chats';
 
 interface IChatsApi {
     getChat(id: string): Promise<ChatApiType>;
-    getChats(): Promise<ChatsListApiType>;
+    getChats(): Promise<ChatApiType[]>;
     createNewChat(memberId: string, title: string): void;
 }
 
@@ -16,17 +16,17 @@ export class ChatsApi implements IChatsApi {
         return data;
     }
 
-    public async getChats(): Promise<ChatsListApiType> {
+    public async getChats(): Promise<ChatApiType[]> {
         const {data} = await this.api.get('/chats/');
 
-        return data;
+        return data.results;
     }
 
-    public async createNewChat(memberId: string, title: string) {
+    public async createNewChat(memberId: string) {
         await this.api.post('/chats/', {
             'members': [memberId],
             'is_private': true,
-            'title': title
+            'title': 'title'
         });
     }
 }

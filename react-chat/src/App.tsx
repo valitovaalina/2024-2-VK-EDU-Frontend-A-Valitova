@@ -23,7 +23,7 @@ export function App() {
                     }
                 />
                 <Route
-                    path={AppRoute.Chat}
+                    path={AppApiRoute.ChatWithChatId}
                     element={
                         <PrivateRoute>
                             <ChatPage />

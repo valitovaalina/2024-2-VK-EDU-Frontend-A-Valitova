@@ -18,7 +18,9 @@ export type ChatApiType = {
     created_at: Date;
     updated_at: Date;
     is_private: boolean;
-    last_message: string;
+    last_message: {
+        text: string;
+    };
 }
 
 export type ChatsListApiType = {

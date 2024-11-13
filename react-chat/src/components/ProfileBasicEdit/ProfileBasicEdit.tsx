@@ -2,18 +2,19 @@ import {type FC, type FormEvent, useEffect, useState} from 'react';
 import {useInput} from '../../hooks/useInput';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasicEdit.module.scss';
-import type {User} from '../../types/user/index';
+import type {UserApiType} from '../../types/user/index';
 import {ProfilePageInput} from '../ProfilePageInput/ProfilePageInput';
+import {UserApi} from '../../api/user';
 
 interface IProfileBasicEdit {
-    user: User;
+    user: UserApiType;
     editBasicHandler: () => void;
 }
 
 export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}) => {
     let [currentFirstName, setCurrentFirstName] = useState<string | null>(user.first_name);
     let [currentLastName, setCurrentLastName] = useState<string | null>(user.last_name);
-    let [currentBio, setCurrentBio] = useState<string | null>(user.bio);
+    let [currentBio, setCurrentBio] = useState<string | null>(user.bio ?? '');
     
     const [isReady, setReady] = useState(false);
 
@@ -33,6 +34,20 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
         ? true
         : false;
 
+    const userApi = new UserApi();
+
+    const updateUser = async () => {
+        try {
+            await userApi.updateUser(user.id, {
+                first_name: currentFirstName ?? user.first_name,
+                last_name: currentLastName ?? user.last_name,
+                bio: currentBio ?? user.bio ?? '',
+            });
+        } catch (error) {
+            alert(error);
+        }
+    }
+
     useEffect(() => {
         if (!isReady) {
             return;
@@ -40,9 +55,10 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
 
         (currentFirstName === user.first_name) ? currentFirstName = null : currentFirstName = user.first_name;
         (currentLastName === user.last_name) ? currentLastName = null : currentLastName = user.last_name;
-        (currentBio === user.bio) ? currentBio = null : currentBio = user.bio;
+        (currentBio === user.bio) ? currentBio = null : currentBio = user.bio ?? '';
 
         editBasicHandler();
+        updateUser();
     }, [isReady]);
 
     return (
@@ -91,7 +107,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     onBlur={lastName.onBlur}
                 />
                 <ProfilePageInput
-                    value={user.bio}
+                    value={user.bio ?? ''}
                     type='text'
                     placeholder='Bio'
                     id='bio'

@@ -1,11 +1,11 @@
 import {createAPI} from '../../services/apiService';
 import {LocalStorageService} from '../../services/localStorageService';
-import {type UserApiType} from '../../types/user';
+import type {UpdateUserApiType, UserApiType} from '../../types/user';
 
 interface IUserApi {
     getUser(): Promise<UserApiType>;
     getUsers(): Promise<UserApiType[]>;
-    updateUser(id: string, userData: {bio: string, avatar: FormData}): Promise<UserApiType>;
+    updateUser(id: string, userData: UpdateUserApiType): Promise<UserApiType>;
 }
 
 export class UserApi implements IUserApi {
@@ -26,7 +26,7 @@ export class UserApi implements IUserApi {
         return data.results;
     }
 
-    public async updateUser(id: string, userData: {bio: string, avatar: FormData}): Promise<UserApiType> {
+    public async updateUser(id: string, userData: UpdateUserApiType): Promise<UserApiType> {
         const {data} = await this.api.patch(`/user/${id}/`, userData, {
             headers: {
                 'Content-Type': 'multipart/form-data'

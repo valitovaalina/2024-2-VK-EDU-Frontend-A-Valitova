@@ -19,6 +19,12 @@ export type RegisterUserApiType = {
     avatar?: string;
 }
 
+export type UpdateUserApiType = {
+    first_name: string;
+    last_name: string;
+    bio: string
+}
+
 export type UserApiType = {
     id: string;
     username: string;

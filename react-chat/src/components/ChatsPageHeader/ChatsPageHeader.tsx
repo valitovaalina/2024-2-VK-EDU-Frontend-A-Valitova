@@ -4,11 +4,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import styles from './ChatsPageHeader.module.scss';
-import {AppRoute} from '../../consts/AppRoute';
+import {AppApiRoute} from '../../consts/AppRoute';
 
 export const ChatsPageHeader: FC = () => {
     const navigate = useNavigate();
-    const onPersonIconClick = () => navigate(AppRoute.Profile);
+    const onPersonIconClick = () => navigate(AppApiRoute.Profile);
 
     return (
         <header className={styles.header}>

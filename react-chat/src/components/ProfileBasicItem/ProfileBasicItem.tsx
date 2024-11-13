@@ -3,7 +3,7 @@ import styles from './ProfileBasicItem.module.scss';
 
 interface IProfileBasicItem {
     property: string,
-    value: string;
+    value?: string;
 }
 
 export const ProfileBasicItem: FC<IProfileBasicItem> = ({property, value}) => {

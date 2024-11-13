@@ -1,7 +1,7 @@
 import {createAPI} from '../../services/apiService';
 import {LocalStorageService} from '../../services/localStorageService';
 import {type LoginType} from '../../types/auth';
-import {type AuthUserApiType, type UserApiType} from '../../types/user';
+import type {RegisterUserApiType, AuthUserApiType, UserApiType} from '../../types/user';
 
 interface IAuthApi {
     auth(userData: UserApiType): Promise<LoginType>;
@@ -20,7 +20,7 @@ export class AuthApi implements IAuthApi {
         return data;
     }
 
-    public async register(userData: UserApiType): Promise<UserApiType> {
+    public async register(userData: RegisterUserApiType): Promise<UserApiType> {
         const {data} = await this.api.post('/register/', userData, {
             headers: {
                 'Content-Type': 'multipart/form-data',

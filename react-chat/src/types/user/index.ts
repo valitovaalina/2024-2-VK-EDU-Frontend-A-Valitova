@@ -11,7 +11,7 @@ export type AuthUserApiType = {
 }
 
 export type UserApiType = {
-    id: string;
+    id?: string;
     username: string;
     password: string;
     first_name: string;

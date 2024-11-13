@@ -15,7 +15,7 @@ export const createAPI = (): AxiosInstance => {
         (config: InternalAxiosRequestConfig ) => {
             const accessToken = localStorageService.getAccessToken();
 
-            if (config.url !== '/register/' && accessToken && config.headers) {
+            if (accessToken && config.headers) {
                 config.headers['Authorization'] = `Bearer ${accessToken}`;
             }
 

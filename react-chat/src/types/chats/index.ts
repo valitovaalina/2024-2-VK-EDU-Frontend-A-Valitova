@@ -1,13 +1,4 @@
-import {type Message} from '../messages';
 import {type UserApiType} from '../user';
-
-export type Chat = {
-    id: string;
-    name: string;
-    avatar: string;
-    messages: Message[];
-    isReadability?: boolean;
-}
 
 export type ChatApiType = {
     id: string,

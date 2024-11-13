@@ -1,9 +1,3 @@
-export type Message = {
-    id: string;
-    text: string;
-    date: Date;
-}
-
 export type MessageApiType = {
     id: string;
     text: string;

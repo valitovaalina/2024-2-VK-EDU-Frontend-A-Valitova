@@ -1,11 +1,11 @@
 import {type FC, type RefObject} from 'react';
-import type {Message} from '../../types/messages/index';
+import type {MessageApiType} from '../../types/messages/index';
 import {MessageElement} from '../MessageElement/MessageElement';
 import styles from './ChatPageMessages.module.scss';
 
 interface IChatPageMessages {
     messagesRef: RefObject<HTMLDivElement>;
-    messages: Message[];
+    messages: MessageApiType[];
 }
 
 export const ChatPageMessages: FC<IChatPageMessages> = ({messagesRef, messages}) => {

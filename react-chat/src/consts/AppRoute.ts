@@ -1,5 +1,9 @@
-export const AppRoute = {
-    Chats: '/',
-    Chat: '/chat/:id',
+export const AppApiRoute = {
+    Root: '/',
+    Login: '/login',
+    Register: '/register',
+    Chats: '/chats',
+    Chat: '/chat',
+    ChatWithChatId: '/chat/:id',
     Profile: '/profile',
-} as const;
+}

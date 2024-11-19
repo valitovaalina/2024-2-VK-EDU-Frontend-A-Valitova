@@ -3,34 +3,73 @@ import {useEffect, useState} from 'react';
 import {ChatsPageHeader} from '../components/ChatsPageHeader/ChatsPageHeader';
 import {ChatsPageItemsList} from '../components/ChatsPageItemsList/ChatsPageItemsList';
 import {NewChatButton} from '../components/NewChatButton/NewChatButton';
-import type {Chat} from '../types/chats/index';
-import avatar from '../images/avatar_1.jpg';
-import {saveChatsToLocalStorage} from '../api/chatsPage/saveChatsToLocalStorage';
-import {getChatsFromLocalStorage} from '../api/chatsPage/getChatsFromLocalStorage';
-import {chatsMocks} from '../mocks/mocks';
+import type {ChatApiType} from '../types/chats/index';
+import {ChatsApi} from '../api/chats';
+import {AppApiRoute} from '../consts/AppRoute';
+import {useNavigate} from 'react-router-dom';
+import {UserApi} from '../api/user';
+import {type UserApiType } from '../types/user';
 
 export const ChatsPage: FC = () => {
-    const [chats, setChats] = useState<Chat[]>([]);
-    const handleSetChats = (chats: Chat[]) => setChats(chats);
-    const addChat = (): void => {
-        const id = `${chats.length + 1}`;
-        const chat: Chat = {id, name: `Чувак ${id}`, avatar, messages: [{id: '1', date: new Date(), text: 'hey'}], isReadability: false};
-        const newChats = [...chats, chat];
-        saveChatsToLocalStorage(newChats);
-        handleSetChats(newChats);
+    const navigate = useNavigate();
+    const [chats, setChats] = useState<ChatApiType[]>([]);
+    const [users, setUsers] = useState<UserApiType[]>([]);
+    const [isChatAdded, setIsChatAdded] = useState(false);
+    const chatsApi = new ChatsApi();
+    const userApi = new UserApi();
+    
+    const getUsers = async () => {
+        try {
+            const data = await userApi.getUsers();
+            
+            if (data) {
+                setUsers(data);
+            }
+        } catch (error) {
+            navigate(AppApiRoute.Login);
+            alert(error);
+        }
+    };
+
+    const addChat = async () => {
+        try {
+            const guid = users[Math.floor(Math.random() * users.length)].id;
+            
+            await chatsApi.createNewChat(guid);
+            setIsChatAdded(true);
+        } catch (error) {
+            navigate(AppApiRoute.Chats);
+            alert(error);
+        }
+    }
+
+    const getChats = async () => {
+        try {
+            const data = await chatsApi.getChats();
+
+            if (data) {
+                setChats(data);
+            }
+        } catch (error) {
+            navigate(AppApiRoute.Login);
+            alert(error);
+        }
     }
 
     useEffect(() => {
-        if (getChatsFromLocalStorage().length === 0) {
-            saveChatsToLocalStorage(chatsMocks);
-        }
-        setChats(getChatsFromLocalStorage());
+        getChats();
+
+        return () => setIsChatAdded(false);
+    }, [isChatAdded]);
+
+    useEffect(() => {
+        getUsers();
     }, []);
 
     return (
         <div>
             <ChatsPageHeader />
-            <ChatsPageItemsList />
+            <ChatsPageItemsList chats={chats} />
             <NewChatButton onClick={addChat} />
         </div>
     );

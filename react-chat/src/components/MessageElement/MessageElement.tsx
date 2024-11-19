@@ -1,13 +1,14 @@
 import {type FC} from 'react';
-import type {Message} from '../../types/messages/index';
+import type {MessageApiType} from '../../types/messages/index';
+
 import styles from './MessageElement.module.scss';
 
 interface IMessageElement {
-    message: Message;
+    message: MessageApiType;
 }
 
 export const MessageElement: FC<IMessageElement> = ({message}) => {
-    const formattedDate = new Date(message.date).toLocaleTimeString();
+    const formattedDate = new Date(message.created_at).toLocaleTimeString();
 
     return (
         <li className={styles.message}>

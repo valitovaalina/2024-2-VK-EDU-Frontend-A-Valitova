@@ -58,17 +58,19 @@ export const getChats = createAsyncThunk<ChatApiType[], undefined, {
     }
 );
 
-export const createNewChat = createAsyncThunk<void, {memberId: string}, {
+export const createNewChat = createAsyncThunk<ChatApiType, {memberId: string}, {
     state: State;
     extra: AxiosInstance;
 }>(
     'chats/createNewChat',
     async ({memberId}, {extra: api}) => {
-        await api.post('/chats/', {
+        const {data} = await api.post('/chats/', {
             'members': [memberId],
             'is_private': true,
             'title': 'title'
         });
+        
+        return data;
     }
 );
 

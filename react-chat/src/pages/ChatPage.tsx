@@ -1,74 +1,42 @@
 import {useEffect, useState, type FC, type FormEvent, type ChangeEvent, useRef} from 'react';
+import {type AxiosError} from 'axios';
 import {useNavigate, useParams} from 'react-router-dom';
 import {ChatPageFooter} from '../components/ChatPageFooter/ChatPageFooter';
 import {ChatPageHeader} from '../components/ChatPageHeader/ChatPageHeader';
 import {ChatPageMessages} from '../components/ChatPageMessages/ChatPageMessages';
-import type {MessageApiType} from '../types/messages/index';
 import {AppApiRoute} from '../consts/AppRoute';
-import {MessagesApi} from '../api/messages';
-import {ChatsApi} from '../api/chats';
-import type {ChatApiType} from '../types/chats';
+import {useAppDispatch, useAppSelector} from '../hooks/useStore';
+import {getUserChat} from '../store/ChatsReducer/ChatsSelectors';
+import {createNewMessage, fetchChat, fetchMessages } from '../store/apiActions';
 
 export const ChatPage: FC = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const chat = useAppSelector(getUserChat);
     const [inputValue, setInputValue] = useState<string>('');
-    const [messages, setMessages] = useState<MessageApiType[] | []>([]);
-    const [chat, setChat] = useState<ChatApiType | null>(null);
     const messagesRef = useRef<any>();
-    const messagesApi = new MessagesApi();
-    const chatsApi = new ChatsApi();
 
     if (!id) {
         navigate(AppApiRoute.Chats);
         return null;
     }
 
-    const getChat = async () => {
-        try {
-            const data = await chatsApi.getChat(id);
-            
-            if (data) {
-                setChat(data);
-            }
-        } catch (error) {
-            navigate(AppApiRoute.Login);
-            alert(error);
-        }
-    };
-
-    const getMessages = async () => {
-        try {
-            const data = await messagesApi.getMessages(id);
-            
-            if (data) {
-                setMessages(data.results);
-            }
-        } catch (error) {
-            navigate(AppApiRoute.Login);
-            alert(error);
-        }
-    };
-
-    const sendMessage = async (text: string) => {
-        try {
-            const data = await messagesApi.createNewMessage(text, id);
-            
-            if (data) {
-                setMessages((messages: MessageApiType[] | null) => messages ? [...messages, data] : [data]);
-            }
-        } catch (error) {
-            navigate(AppApiRoute.Login);
-            alert(error);
-        }
-    }
-
     useEffect(() => {
-        getChat()
-        getMessages();
+        dispatch(fetchChat({id})).catch((err: AxiosError) => {
+            navigate(AppApiRoute.Login);
+            alert(err);
+        });
+        dispatch(fetchMessages({id})).catch((err: AxiosError) => {
+            navigate(AppApiRoute.Login);
+            alert(err);
+        });
 
         const timerId = setInterval(() => {
-            getMessages();
+            dispatch(fetchMessages({id})).catch((err: AxiosError) => {
+                navigate(AppApiRoute.Login);
+                alert(err);
+            });
         }, 10000);
 
         return () => clearInterval(timerId);
@@ -78,7 +46,10 @@ export const ChatPage: FC = () => {
         event.preventDefault();
 
         if (inputValue !== '') {
-            sendMessage(inputValue);
+            dispatch(createNewMessage({messageText: inputValue, chatId: id})).catch((err: AxiosError) => {
+                navigate(AppApiRoute.Login);
+                alert(err);
+            });
             setInputValue('');
 
             if (messagesRef.current) {
@@ -94,7 +65,7 @@ export const ChatPage: FC = () => {
     return (
         <div>
             <ChatPageHeader chatName={chat?.title} />
-            <ChatPageMessages messages={messages} messagesRef={messagesRef} />
+            <ChatPageMessages messagesRef={messagesRef} />
             <ChatPageFooter handleSubmit={handleSubmit} inputValue={inputValue} onChangeInput={onChangeInput} />
         </div>
     );

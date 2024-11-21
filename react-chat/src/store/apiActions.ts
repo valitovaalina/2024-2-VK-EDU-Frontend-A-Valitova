@@ -74,7 +74,7 @@ export const createNewChat = createAsyncThunk<ChatApiType, {memberId: string}, {
     }
 );
 
-export const fetchMessages = createAsyncThunk<MessagesListApiType, {id: string}, {
+export const fetchMessages = createAsyncThunk<MessageApiType[], {id: string}, {
     state: State;
     extra: AxiosInstance;
 }>(
@@ -82,7 +82,7 @@ export const fetchMessages = createAsyncThunk<MessagesListApiType, {id: string},
     async ({id}, {extra: api}) => {
         const {data} = await api.get<MessagesListApiType>(`/messages/?chat=${id}`);
 
-        return data;
+        return data.results;
     }
 );
 

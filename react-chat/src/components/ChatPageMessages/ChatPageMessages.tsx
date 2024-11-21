@@ -1,14 +1,16 @@
 import {type FC, type RefObject} from 'react';
-import type {MessageApiType} from '../../types/messages/index';
+import {useAppSelector} from '../../hooks/useStore';
+import {getMessages} from '../../store/MessagesReducer/MessagesSelectors';
 import {MessageElement} from '../MessageElement/MessageElement';
 import styles from './ChatPageMessages.module.scss';
 
 interface IChatPageMessages {
     messagesRef: RefObject<HTMLDivElement>;
-    messages: MessageApiType[];
 }
 
-export const ChatPageMessages: FC<IChatPageMessages> = ({messagesRef, messages}) => {
+export const ChatPageMessages: FC<IChatPageMessages> = ({messagesRef}) => {
+    const messages = useAppSelector(getMessages);
+    
     return (
         <main className={styles.messages}>
             <div className={styles.messagesScroll}>

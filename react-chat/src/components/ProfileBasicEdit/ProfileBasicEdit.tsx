@@ -7,6 +7,7 @@ import type {UserApiType} from '../../types/user/index';
 import {ProfilePageInput} from '../ProfilePageInput/ProfilePageInput';
 import {useAppDispatch} from '../../hooks/useStore';
 import {updateUser} from '../../store/apiActions';
+import {updateUserBio, updateUserFirstName, updateUserLastName} from '../../store/actions';
 
 interface IProfileBasicEdit {
     user: UserApiType;
@@ -85,7 +86,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     onChange={(e: FormEvent<HTMLInputElement>) => {
                         const newFirstName = String(e.currentTarget.value);
                         setCurrentFirstName(newFirstName);
-                        user.first_name = newFirstName;
+                        dispatch(updateUserFirstName(newFirstName));
                     }}
                     onBlur={firstName.onBlur}
                 />
@@ -102,7 +103,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     onChange={(e: FormEvent<HTMLInputElement>) => {
                         const newLastName = String(e.currentTarget.value);
                         setCurrentLastName(newLastName);
-                        user.last_name = newLastName;
+                        dispatch(updateUserLastName(newLastName));
                     }}
                     onBlur={lastName.onBlur}
                 />
@@ -119,7 +120,7 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
                     onChange={(e: FormEvent<HTMLInputElement>) => {
                         const newBio = String(e.currentTarget.value);
                         setCurrentBio(newBio);
-                        user.bio = newBio;
+                        dispatch(updateUserBio(newBio));
                     }}
                     onBlur={bio.onBlur}
                 />

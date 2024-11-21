@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Reducer} from '../../consts/Reducer';
 import type {UserApiType} from '../../types/user/index';
-import {getUser, getUsers, updateUser} from '../apiActions';
+import {fetchUser, fetchUsers, updateUser} from '../apiActions';
 
 const initialState: {
     user: UserApiType | null,
@@ -17,10 +17,10 @@ export const userReducer = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getUser.fulfilled, (state, action) => {
+            .addCase(fetchUser.fulfilled, (state, action) => {
                 state.user = action.payload;
             })
-            .addCase(getUsers.fulfilled, (state, action) => {
+            .addCase(fetchUsers.fulfilled, (state, action) => {
                 state.users = action.payload;
             })
             .addCase(updateUser.fulfilled, (state, action) => {

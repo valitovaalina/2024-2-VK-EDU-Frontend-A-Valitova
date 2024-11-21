@@ -34,7 +34,7 @@ export const register = createAsyncThunk<UserApiType, RegisterUserApiType, {
     }
 );
 
-export const getChat = createAsyncThunk<ChatApiType, {id: string}, {
+export const fetchChat = createAsyncThunk<ChatApiType, {id: string}, {
     state: State;
     extra: AxiosInstance;
 }>(
@@ -46,7 +46,7 @@ export const getChat = createAsyncThunk<ChatApiType, {id: string}, {
     }
 );
 
-export const getChats = createAsyncThunk<ChatApiType[], undefined, {
+export const fetchChats = createAsyncThunk<ChatApiType[], undefined, {
     state: State;
     extra: AxiosInstance;
 }>(
@@ -74,7 +74,7 @@ export const createNewChat = createAsyncThunk<ChatApiType, {memberId: string}, {
     }
 );
 
-export const getMessages = createAsyncThunk<MessagesListApiType, {id: string}, {
+export const fetchMessages = createAsyncThunk<MessagesListApiType, {id: string}, {
     state: State;
     extra: AxiosInstance;
 }>(
@@ -101,7 +101,7 @@ export const createNewMessage = createAsyncThunk<MessageApiType, {messageText: s
     }
 );
 
-export const getUser = createAsyncThunk<UserApiType, undefined, {
+export const fetchUser = createAsyncThunk<UserApiType, undefined, {
     state: State;
     extra: AxiosInstance;
 }>(
@@ -113,7 +113,7 @@ export const getUser = createAsyncThunk<UserApiType, undefined, {
     }
 );
 
-export const getUsers = createAsyncThunk<UserApiType[], undefined, {
+export const fetchUsers = createAsyncThunk<UserApiType[], undefined, {
     state: State;
     extra: AxiosInstance;
 }>(

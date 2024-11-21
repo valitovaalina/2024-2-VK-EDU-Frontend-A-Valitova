@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Reducer} from '../../consts/Reducer';
 import type {ChatApiType} from '../../types/chats';
-import {createNewChat, getChat, getChats} from '../apiActions';
+import {createNewChat, fetchChat, fetchChats} from '../apiActions';
 
 const initialState: {
     chat: ChatApiType | null,
@@ -17,10 +17,10 @@ export const chatsReducer = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getChat.fulfilled, (state, action) => {
+            .addCase(fetchChat.fulfilled, (state, action) => {
                 state.chat = action.payload;
             })
-            .addCase(getChats.fulfilled, (state, action) => {
+            .addCase(fetchChats.fulfilled, (state, action) => {
                 state.chats = action.payload;
             })
             .addCase(createNewChat.fulfilled, (state, action) => {

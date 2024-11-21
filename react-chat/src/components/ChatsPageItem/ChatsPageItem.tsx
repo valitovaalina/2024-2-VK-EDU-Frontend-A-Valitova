@@ -18,7 +18,7 @@ export const ChatsPageItem: FC<IChatsPageItem> = ({chat, onClick}) => {
                 <img src={avatar} alt={title} className={styles.chatAvatar} />
                 <div className={styles.chatContent}>
                     <h2 className={styles.chatName}>{title}</h2>
-                    <p className={styles.chatLastMessage}>{last_message.text}</p>
+                    <p className={styles.chatLastMessage}>{last_message ? last_message.text : ''}</p>
                 </div>
             </div>
             <div className={styles.chatIndicators}>

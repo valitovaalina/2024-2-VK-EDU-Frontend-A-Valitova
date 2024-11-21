@@ -1,10 +1,12 @@
 import {type FC, type FormEvent, useEffect, useState} from 'react';
+import {type AxiosError} from 'axios';
 import {useInput} from '../../hooks/useInput';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasicEdit.module.scss';
 import type {UserApiType} from '../../types/user/index';
 import {ProfilePageInput} from '../ProfilePageInput/ProfilePageInput';
-import {UserApi} from '../../api/user';
+import {useAppDispatch} from '../../hooks/useStore';
+import {updateUser} from '../../store/apiActions';
 
 interface IProfileBasicEdit {
     user: UserApiType;
@@ -12,10 +14,12 @@ interface IProfileBasicEdit {
 }
 
 export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}) => {
+    const dispatch = useAppDispatch();
+
     let [currentFirstName, setCurrentFirstName] = useState<string | null>(user.first_name);
     let [currentLastName, setCurrentLastName] = useState<string | null>(user.last_name);
     let [currentBio, setCurrentBio] = useState<string | null>(user.bio ?? '');
-    
+
     const [isReady, setReady] = useState(false);
 
     const firstName = useInput('', {isEmpty: false, maxLength: 50});
@@ -34,20 +38,6 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
         ? true
         : false;
 
-    const userApi = new UserApi();
-
-    const updateUser = async () => {
-        try {
-            await userApi.updateUser(user.id, {
-                first_name: currentFirstName ?? user.first_name,
-                last_name: currentLastName ?? user.last_name,
-                bio: currentBio ?? user.bio ?? '',
-            });
-        } catch (error) {
-            alert(error);
-        }
-    }
-
     useEffect(() => {
         if (!isReady) {
             return;
@@ -58,8 +48,18 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
         (currentBio === user.bio) ? currentBio = null : currentBio = user.bio ?? '';
 
         editBasicHandler();
-        updateUser();
-    }, [isReady]);
+
+        dispatch(updateUser(
+            {
+                id: user.id,
+                userData: {
+                    first_name: currentFirstName ?? user.first_name,
+                    last_name: currentLastName ?? user.last_name,
+                    bio: currentBio ?? user.bio ?? '',
+                }
+            }
+        )).catch((err: AxiosError) => alert(err));
+    }, [isReady, dispatch]);
 
     return (
         <div className={styles.container}>

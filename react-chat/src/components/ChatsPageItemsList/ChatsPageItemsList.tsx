@@ -1,15 +1,13 @@
 import type {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {ChatApiType} from '../../types/chats';
+import {useAppSelector} from '../../hooks/useStore';
+import {getUserChats} from '../../store/ChatsReducer/ChatsSelectors';
 import {ChatsPageItem} from '../ChatsPageItem/ChatsPageItem';
 import styles from './ChatsPageItemsList.module.scss';
 
-interface IChatsPageItemsList {
-    chats: ChatApiType[];
-}
-
-export const ChatsPageItemsList: FC<IChatsPageItemsList> = ({chats}) => {
+export const ChatsPageItemsList: FC = () => {
     const navigate = useNavigate();
+    const chats = useAppSelector(getUserChats);
 
     return (
         <ul className={styles.list}>

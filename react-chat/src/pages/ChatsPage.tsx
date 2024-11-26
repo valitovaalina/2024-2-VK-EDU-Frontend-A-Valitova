@@ -1,75 +1,52 @@
 import type {FC} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from 'react';
+import {type AxiosError} from 'axios';
 import {ChatsPageHeader} from '../components/ChatsPageHeader/ChatsPageHeader';
 import {ChatsPageItemsList} from '../components/ChatsPageItemsList/ChatsPageItemsList';
 import {NewChatButton} from '../components/NewChatButton/NewChatButton';
-import type {ChatApiType} from '../types/chats/index';
-import {ChatsApi} from '../api/chats';
 import {AppApiRoute} from '../consts/AppRoute';
-import {useNavigate} from 'react-router-dom';
-import {UserApi} from '../api/user';
-import {type UserApiType } from '../types/user';
+import {useAppDispatch, useAppSelector} from '../hooks/useStore';
+import {getUsers} from '../store/UserReducer/UserSelectors';
+import {createNewChat, fetchChats, fetchUsers} from '../store/apiActions';
 
 export const ChatsPage: FC = () => {
     const navigate = useNavigate();
-    const [chats, setChats] = useState<ChatApiType[]>([]);
-    const [users, setUsers] = useState<UserApiType[]>([]);
+    const dispatch = useAppDispatch();
+    const users = useAppSelector(getUsers);
     const [isChatAdded, setIsChatAdded] = useState(false);
-    const chatsApi = new ChatsApi();
-    const userApi = new UserApi();
-    
-    const getUsers = async () => {
-        try {
-            const data = await userApi.getUsers();
-            
-            if (data) {
-                setUsers(data);
-            }
-        } catch (error) {
-            navigate(AppApiRoute.Login);
-            alert(error);
-        }
-    };
 
     const addChat = async () => {
-        try {
-            const guid = users[Math.floor(Math.random() * users.length)].id;
-            
-            await chatsApi.createNewChat(guid);
-            setIsChatAdded(true);
-        } catch (error) {
+        const guid = users[Math.floor(Math.random() * users.length)].id;
+
+        dispatch(createNewChat({memberId: guid})).catch((err: AxiosError) => {
             navigate(AppApiRoute.Chats);
-            alert(error);
-        }
-    }
+            alert(err.message);
+        });
 
-    const getChats = async () => {
-        try {
-            const data = await chatsApi.getChats();
-
-            if (data) {
-                setChats(data);
-            }
-        } catch (error) {
-            navigate(AppApiRoute.Login);
-            alert(error);
-        }
+        setIsChatAdded(true);
     }
 
     useEffect(() => {
-        getChats();
+        dispatch(fetchChats()).catch((err: AxiosError) => {
+            navigate(AppApiRoute.Login);
+            alert(err.message);
+        });
 
         return () => setIsChatAdded(false);
-    }, [isChatAdded]);
+    }, [isChatAdded, dispatch]);
 
     useEffect(() => {
-        getUsers();
-    }, []);
+        dispatch(fetchUsers()).catch((err: AxiosError) => {
+            navigate(AppApiRoute.Login);
+            alert(err.message);
+        });
+    }, [dispatch]);
 
     return (
         <div>
             <ChatsPageHeader />
-            <ChatsPageItemsList chats={chats} />
+            <ChatsPageItemsList />
             <NewChatButton onClick={addChat} />
         </div>
     );

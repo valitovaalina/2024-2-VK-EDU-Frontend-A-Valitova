@@ -40,7 +40,7 @@ export const fetchChat = createAsyncThunk<ChatApiType, {id: string}, {
 }>(
     'chats/getChat',
     async ({id}, {extra: api}) => {
-        const {data} = await api.get<ChatApiType>(`/chat/${id}`);
+        const {data} = await api.get<ChatApiType>(`/chat/${id}/`);
 
         return data;
     }
@@ -80,7 +80,7 @@ export const fetchMessages = createAsyncThunk<MessageApiType[], {id: string}, {
 }>(
     'messages/getMessages',
     async ({id}, {extra: api}) => {
-        const {data} = await api.get<MessagesListApiType>(`/messages/?chat=${id}`);
+        const {data} = await api.get<MessagesListApiType>(`/messages/?chat=${id}/`);
 
         return data.results;
     }

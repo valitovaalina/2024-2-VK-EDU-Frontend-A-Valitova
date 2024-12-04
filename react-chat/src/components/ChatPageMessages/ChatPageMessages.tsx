@@ -5,7 +5,7 @@ import {MessageElement} from '../MessageElement/MessageElement';
 import styles from './ChatPageMessages.module.scss';
 
 interface IChatPageMessages {
-    messagesRef: RefObject<HTMLDivElement>;
+    messagesRef: RefObject<HTMLUListElement>;
 }
 
 export const ChatPageMessages: FC<IChatPageMessages> = ({messagesRef}) => {
@@ -14,9 +14,9 @@ export const ChatPageMessages: FC<IChatPageMessages> = ({messagesRef}) => {
     return (
         <main className={styles.messages}>
             <div className={styles.messagesScroll}>
-                <div id="messages" className={styles.messages} ref={messagesRef}>
+                <ul id="messages" className={styles.messages} ref={messagesRef}>
                     {messages.map((message) => <MessageElement key={message.id} message={message} />)}
-                </div>
+                </ul>
             </div>
         </main>
     );

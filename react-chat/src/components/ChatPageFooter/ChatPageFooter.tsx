@@ -21,7 +21,7 @@ export const ChatPageFooter: FC<IChatPageFooter> = ({inputValue, onChangeInput, 
                     autoFocus
                     className={styles.formInput}
                 />
-                <button type="submit" id="form_send-button" className={styles.formSendButton}>
+                <button type="submit" id="form_send-button" aria-label="send-button" className={styles.formSendButton}>
                     <ChevronRightIcon className={styles.materialSymbolsOutlined} />
                 </button>
             </form>

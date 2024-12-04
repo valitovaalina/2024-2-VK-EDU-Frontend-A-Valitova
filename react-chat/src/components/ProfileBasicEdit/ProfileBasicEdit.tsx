@@ -1,13 +1,13 @@
 import {type FC, type FormEvent, useEffect, useState} from 'react';
 import {type AxiosError} from 'axios';
 import {useInput} from '../../hooks/useInput';
-import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasicEdit.module.scss';
 import type {UserApiType} from '../../types/user/index';
 import {ProfilePageInput} from '../ProfilePageInput/ProfilePageInput';
 import {useAppDispatch} from '../../hooks/useStore';
 import {updateUser} from '../../store/apiActions';
 import {updateUserBio, updateUserFirstName, updateUserLastName} from '../../store/actions';
+import {LazyImage} from '../LazyImage/LazyImage';
 
 interface IProfileBasicEdit {
     user: UserApiType;
@@ -65,7 +65,15 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
     return (
         <div className={styles.container}>
             <div>
-                <img src={avatar} className={styles.userImg}/>
+                <LazyImage
+                    src={user.avatar}
+                    alt={'profile'}
+                    style={{
+                        "width": "150px",
+                        "height": "150px",
+                        "borderRadius": "100%",
+                    }}
+                />
             </div>
             <form
                 onSubmit={(e: FormEvent<HTMLFormElement>) => {

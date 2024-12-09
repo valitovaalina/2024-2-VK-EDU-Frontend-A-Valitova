@@ -1,9 +1,13 @@
 import {type FC} from 'react';
+import {useNavigate} from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import type {UserApiType} from '../../types/user/index';
 import {ProfileBasicItem} from '../ProfileBasicItem/ProfileBasicItem';
 import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasic.module.scss';
+import {useAuth} from '../../hooks/useAuth';
+import {LocalStorageService} from '../../services/localStorageService';
+import {AppApiRoute} from '../../consts/AppRoute';
 
 interface IProfileBasic {
     user: UserApiType;
@@ -11,9 +15,19 @@ interface IProfileBasic {
 }
 
 export const ProfileBasic: FC<IProfileBasic> = ({user, editBasicHandler}) => {
+    const navigate = useNavigate();
+    const {setUserAuth} = useAuth();
+    const localStorageService = new LocalStorageService();
+
+    const handleExit = () => {
+        localStorageService.removeTokens();
+        setUserAuth(false);
+        navigate(AppApiRoute.Login);
+    }
+
     return (
         <div className={styles.profileBasic}>
-            <div>
+            <div className={styles.content}>
                 <img src={avatar} className={styles.userImg} />
             </div>
             <h1 className={styles.header}>
@@ -24,6 +38,7 @@ export const ProfileBasic: FC<IProfileBasic> = ({user, editBasicHandler}) => {
                 <ProfileBasicItem property={'Фамилия'} value={user.last_name} />
                 <ProfileBasicItem property={'О себе'} value={user?.bio} />
             </div>
+            <button className={styles.button} onClick={handleExit}>Выйти</button>
         </div>
     );
 }

@@ -1,10 +1,11 @@
 import {type FC} from 'react';
 import type {ChatApiType} from '../../types/chats/index';
-import avatar from '../../images/avatar_1.jpg';
 import styles from './ChatsPageItem.module.scss';
+import {LazyImage} from '../LazyImage/LazyImage';
 
 interface IChatsPageItem {
     chat: ChatApiType;
+
     onClick(): void;
 }
 
@@ -15,7 +16,16 @@ export const ChatsPageItem: FC<IChatsPageItem> = ({chat, onClick}) => {
     return (
         <li className={styles.chat} onClick={onClick}>
             <div className={styles.chatContentBox}>
-                <img src={avatar} alt={title} className={styles.chatAvatar} />
+                <LazyImage
+                    src={chat.avatar}
+                    alt={title}
+                    style={{
+                        "width": "56px",
+                        "height": "56px",
+                        "marginRight": "20px",
+                        "borderRadius": "56px"
+                    }}
+                />
                 <div className={styles.chatContent}>
                     <h2 className={styles.chatName}>{title}</h2>
                     <p className={styles.chatLastMessage}>{last_message ? last_message.text : ''}</p>

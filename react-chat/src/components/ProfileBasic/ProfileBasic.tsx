@@ -3,11 +3,11 @@ import {useNavigate} from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import type {UserApiType} from '../../types/user/index';
 import {ProfileBasicItem} from '../ProfileBasicItem/ProfileBasicItem';
-import avatar from '../../images/avatar_1.jpg';
 import styles from './ProfileBasic.module.scss';
 import {useAuth} from '../../hooks/useAuth';
 import {LocalStorageService} from '../../services/localStorageService';
 import {AppApiRoute} from '../../consts/AppRoute';
+import {LazyImage} from '../LazyImage/LazyImage';
 
 interface IProfileBasic {
     user: UserApiType;
@@ -28,7 +28,15 @@ export const ProfileBasic: FC<IProfileBasic> = ({user, editBasicHandler}) => {
     return (
         <div className={styles.profileBasic}>
             <div className={styles.content}>
-                <img src={avatar} className={styles.userImg} />
+                <LazyImage
+                    src={user.avatar}
+                    alt={'profile'}
+                    style={{
+                        "width": "150px",
+                        "height": "150px",
+                        "borderRadius": "100%",
+                    }}
+                />
             </div>
             <h1 className={styles.header}>
                 Основное <EditIcon className={styles.materialSymbolsOutlined} onClick={editBasicHandler} />

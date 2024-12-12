@@ -17,6 +17,7 @@ export const ChatPage: FC = () => {
     const [inputValue, setInputValue] = useState<string>('');
     const messagesRef = useRef<HTMLUListElement>() as RefObject<HTMLUListElement>;
 
+    
     if (!id) {
         navigate(AppApiRoute.Chats);
         return null;

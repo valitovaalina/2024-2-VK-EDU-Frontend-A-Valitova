@@ -17,6 +17,11 @@ export const ChatPage: FC = () => {
     const [inputValue, setInputValue] = useState<string>('');
     const messagesRef = useRef<HTMLUListElement>() as RefObject<HTMLUListElement>;
 
+    if (!id) {
+        navigate(AppApiRoute.Chats);
+        return null;
+    }
+
     useEffect(() => {
         if (!id)
             return;
@@ -39,11 +44,6 @@ export const ChatPage: FC = () => {
 
         return () => clearInterval(timerId);
     }, [dispatch, id, navigate]);
-
-    if (!id) {
-        navigate(AppApiRoute.Chats);
-        return null;
-    }
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

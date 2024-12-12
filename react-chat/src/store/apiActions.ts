@@ -80,7 +80,7 @@ export const fetchMessages = createAsyncThunk<MessageApiType[], {id: string}, {
 }>(
     'messages/getMessages',
     async ({id}, {extra: api}) => {
-        const {data} = await api.get<MessagesListApiType>(`/messages/?chat=${id}/`);
+        const {data} = await api.get<MessagesListApiType>(`/messages/?chat=${id}`);
 
         return data.results;
     }

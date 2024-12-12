@@ -34,14 +34,14 @@ export const ChatsPage: FC = () => {
         });
 
         return () => setIsChatAdded(false);
-    }, [isChatAdded, dispatch]);
+    }, [isChatAdded, dispatch, navigate]);
 
     useEffect(() => {
         dispatch(fetchUsers()).catch((err: AxiosError) => {
             navigate(AppApiRoute.Login);
             alert(err.message);
         });
-    }, [dispatch]);
+    }, [dispatch, navigate]);
 
     return (
         <div>

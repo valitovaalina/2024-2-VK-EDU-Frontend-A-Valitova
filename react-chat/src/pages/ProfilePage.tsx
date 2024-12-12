@@ -21,7 +21,7 @@ export const ProfilePage: FC = () => {
             navigate(AppApiRoute.Login);
             alert(err);
         });
-    }, [dispatch]);
+    }, [dispatch, navigate]);
 
     if (!user) {
         navigate(AppApiRoute.Login);

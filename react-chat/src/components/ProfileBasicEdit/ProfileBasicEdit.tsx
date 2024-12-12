@@ -17,9 +17,9 @@ interface IProfileBasicEdit {
 export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}) => {
     const dispatch = useAppDispatch();
 
-    let [currentFirstName, setCurrentFirstName] = useState<string | null>(user.first_name);
-    let [currentLastName, setCurrentLastName] = useState<string | null>(user.last_name);
-    let [currentBio, setCurrentBio] = useState<string | null>(user.bio ?? '');
+    const [currentFirstName, setCurrentFirstName] = useState<string | null>(user.first_name);
+    const [currentLastName, setCurrentLastName] = useState<string | null>(user.last_name);
+    const [currentBio, setCurrentBio] = useState<string | null>(user.bio ?? '');
 
     const [isReady, setReady] = useState(false);
 
@@ -43,10 +43,24 @@ export const ProfileBasicEdit: FC<IProfileBasicEdit> = ({user, editBasicHandler}
         if (!isReady) {
             return;
         }
+        
+        if (currentFirstName === user.first_name) {
+            setCurrentFirstName(null);
+        }
+        else
+            setCurrentFirstName(user.first_name);
 
-        (currentFirstName === user.first_name) ? currentFirstName = null : currentFirstName = user.first_name;
-        (currentLastName === user.last_name) ? currentLastName = null : currentLastName = user.last_name;
-        (currentBio === user.bio) ? currentBio = null : currentBio = user.bio ?? '';
+        if (currentLastName === user.last_name) {
+            setCurrentLastName(null);
+        }
+        else
+            setCurrentLastName(user.last_name);
+
+        if (currentBio === user.bio) {
+            setCurrentBio(null);
+        }
+        else
+            setCurrentBio(user.bio ?? '');
 
         editBasicHandler();
 

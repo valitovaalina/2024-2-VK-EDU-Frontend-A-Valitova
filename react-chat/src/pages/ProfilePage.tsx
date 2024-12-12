@@ -30,7 +30,7 @@ export const ProfilePage: FC = () => {
 
     return (
         <div>
-            <div>aaaaa</div>
+            <ProfilePageHeader />
             {!editingBasic
                 ? <ProfileBasic user={user} editBasicHandler={editBasicHandler} />
                 : <ProfileBasicEdit user={user} editBasicHandler={editBasicHandler} />

@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "husky": "^9.1.7",
+    "typescript-eslint": "^8.18.0"
+  }
+}

@@ -1,4 +1,4 @@
-import {useEffect, useState, type FC, type FormEvent, type ChangeEvent, useRef} from 'react';
+import {useEffect, useState, type FC, type FormEvent, type ChangeEvent, useRef, type RefObject} from 'react';
 import {type AxiosError} from 'axios';
 import {useNavigate, useParams} from 'react-router-dom';
 import {ChatPageFooter} from '../components/ChatPageFooter/ChatPageFooter';
@@ -15,14 +15,12 @@ export const ChatPage: FC = () => {
     const dispatch = useAppDispatch();
     const chat = useAppSelector(getUserChat);
     const [inputValue, setInputValue] = useState<string>('');
-    const messagesRef = useRef<any>();
-
-    if (!id) {
-        navigate(AppApiRoute.Chats);
-        return null;
-    }
+    const messagesRef = useRef<HTMLUListElement>() as RefObject<HTMLUListElement>;
 
     useEffect(() => {
+        if (!id)
+            return;
+        
         dispatch(fetchChat({id})).catch((err: AxiosError) => {
             navigate(AppApiRoute.Login);
             alert(err);
@@ -40,7 +38,12 @@ export const ChatPage: FC = () => {
         }, 10000);
 
         return () => clearInterval(timerId);
-    }, []);
+    }, [dispatch, id, navigate]);
+
+    if (!id) {
+        navigate(AppApiRoute.Chats);
+        return null;
+    }
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

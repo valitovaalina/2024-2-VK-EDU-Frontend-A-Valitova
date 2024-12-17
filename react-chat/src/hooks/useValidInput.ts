@@ -14,14 +14,23 @@ export const useValidInput = (value: string, validations: ValidationType) => {
         for (const validation in validations) {
             switch (validation) {
                 case 'maxLength':
-                    value.length > validations[validation] ? setMaxLengthError(true) : setMaxLengthError(false);
+                    if (value.length > validations[validation]) {
+                        setMaxLengthError(true);
+                    }
+                    else
+                        setMaxLengthError(false);
                     break;
                 case 'isEmpty':
-                    value ? setEmpty(false) : setEmpty(true);
+                    if (value) {
+                        setEmpty(false);
+                    }
+                    else {
+                        setEmpty(true);
+                    }
                     break;
             }
         }
-    }, [value]);
+    }, [value, validations]);
 
     useEffect(() => {
         if (isEmpty || maxLengthError) {

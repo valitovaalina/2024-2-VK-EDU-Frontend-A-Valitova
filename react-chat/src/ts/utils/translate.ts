@@ -17,11 +17,11 @@ export const translate = async ({text, sourceLang, totalLang}: TranslateRequestP
     const data = await response.json();
 
     if (data.responseStatus !== 200) {
-        throw new Error(`Что-то пошло не так: ${data.error.message}`);
+        throw new Error('Что-то пошло не так');
     }
 
     const translatedText = data.responseData.translatedText;
-    
+
     map.set(key, translatedText);
 
     return {

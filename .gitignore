@@ -3,6 +3,7 @@
 /dist
 /tmp
 /out-tsc
+/ts/utils/*.js
 
 # Runtime data
 pids
